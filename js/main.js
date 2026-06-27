@@ -358,6 +358,23 @@
       })
       .join("");
 
+    // 영상 섹션은 video(유튜브 ID) 필드가 있을 때만 표시
+    let videoHtml = "";
+    if (level.video) {
+      const vid = encodeURIComponent(level.video);
+      videoHtml =
+        '<div class="modal-video">' +
+        '<div class="video-label">🎬 플레이 영상</div>' +
+        '<div class="video-frame">' +
+        '<iframe src="https://www.youtube.com/embed/' + vid + '" ' +
+        'title="' + esc(level.name) + ' 영상" ' +
+        'loading="lazy" frameborder="0" ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+        "allowfullscreen></iframe>" +
+        "</div>" +
+        "</div>";
+    }
+
     // 논란 섹션은 controversy 필드가 있을 때만 표시
     let controversyHtml = "";
     if (level.controversy) {
@@ -393,6 +410,7 @@
       '<div class="modal-history">' +
       historyHtml +
       "</div>" +
+      videoHtml +
       controversyHtml;
 
     modal.hidden = false;

@@ -312,6 +312,7 @@ const LEVELS = [
     tag: "1위 등극",
     motif: "blood",
     colors: ["#ff2d2d", "#2b0000"],
+    video: "7W5bZJY2IPI",
     summary: "2021년 정상에 오른 잔혹한 난이도의 대형 콜라브.",
     history:
       "Slaughterhouse는 2021년 Spaceuk가 베리파이하며 데몬리스트 1위에 오른 레벨입니다. 이름 그대로 살벌한 " +

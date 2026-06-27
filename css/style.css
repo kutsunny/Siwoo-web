@@ -527,6 +527,37 @@ a {
   margin-top: 14px;
 }
 
+/* 플레이 영상 섹션 */
+.modal-video {
+  margin-top: 24px;
+}
+
+.video-label {
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  background: #000;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* 논란 섹션 */
 .modal-controversy {
   margin-top: 24px;
