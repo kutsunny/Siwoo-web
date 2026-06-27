@@ -76,6 +76,33 @@
       ' Z" fill="' + c + '"/>'
     );
   }
+  // 악마 해골 (어두운 실루엣 + 붉은 윤곽 · 빛나는 눈 · 뿔)
+  function demonSkull(cx, cy, sc, c1, c2) {
+    let g = '<g transform="translate(' + cx + ' ' + cy + ') scale(' + sc + ')" opacity="0.92">';
+    // 뿔
+    g += '<path d="M -16 -20 Q -44 -34 -40 -64 Q -34 -40 -8 -26 Z" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="1.4"/>';
+    g += '<path d="M 16 -20 Q 44 -34 40 -64 Q 34 -40 8 -26 Z" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="1.4"/>';
+    // 두개골 + 턱
+    g += '<path d="M -26 -8 C -28 -30 -14 -40 0 -40 C 14 -40 28 -30 26 -8 ' +
+         'C 25 4 20 10 16 16 L 10 30 L 4 24 L 0 32 L -4 24 L -10 30 L -16 16 ' +
+         'C -20 10 -25 4 -26 -8 Z" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="1.6"/>';
+    // 눈 발광
+    g += '<circle cx="-12" cy="-8" r="7" fill="' + c1 + '" opacity="0.45"/>';
+    g += '<circle cx="12" cy="-8" r="7" fill="' + c1 + '" opacity="0.45"/>';
+    // 악마의 눈 (안쪽으로 치켜뜬 슬랜트)
+    g += '<polygon points="-19,-13 -6,-7 -9,-1 -18,-3" fill="' + c1 + '"/>';
+    g += '<polygon points="19,-13 6,-7 9,-1 18,-3" fill="' + c1 + '"/>';
+    // 코
+    g += '<polygon points="-3,2 3,2 0,11" fill="' + c1 + '" opacity="0.75"/>';
+    // 이빨
+    g += '<g fill="' + c1 + '" opacity="0.6">';
+    g += '<polygon points="-9,16 -5,16 -7,24"/>';
+    g += '<polygon points="-3,17 1,17 -1,26"/>';
+    g += '<polygon points="3,16 7,16 5,24"/>';
+    g += "</g>";
+    g += "</g>";
+    return g;
+  }
 
   // ── 모티프별 전경 그리기 ────────────────────────────────────
   const MOTIFS = {
@@ -103,44 +130,49 @@
       }
       return s;
     },
-    // 슬러터하우스: 칠흑 속 진홍빛 글로우 + 붉은 기하 구조물·가시·빛나는 오브
+    // 슬러터하우스: 칠흑 속 진홍빛 글로우 + 악마 해골 + 고딕 문구
     slaughter: function (c1, c2, rng) {
       let s = "";
 
       // 1) 중앙에서 번지는 붉은 글로우 (반투명 원을 겹쳐 방사형처럼)
-      s += '<circle cx="200" cy="96" r="160" fill="' + c1 + '" opacity="0.08"/>';
-      s += '<circle cx="200" cy="96" r="105" fill="' + c1 + '" opacity="0.11"/>';
-      s += '<circle cx="200" cy="96" r="58" fill="' + c1 + '" opacity="0.14"/>';
+      s += '<circle cx="200" cy="78" r="155" fill="' + c1 + '" opacity="0.07"/>';
+      s += '<circle cx="200" cy="78" r="95" fill="' + c1 + '" opacity="0.1"/>';
 
-      // 2) 배경의 어두운 붉은 기하 구조물 (실루엣 블록 + 사선 슬래브)
-      s += '<g opacity="0.5" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="1.5">';
-      s += '<rect x="18" y="28" width="72" height="26" rx="2"/>';
-      s += '<rect x="312" y="32" width="74" height="24" rx="2"/>';
-      s += '<polygon points="150,68 250,68 234,44 166,44"/>';
-      s += '<polygon points="96,118 150,118 138,150 108,150"/>';
-      s += '<polygon points="250,150 280,118 334,118 322,150"/>';
+      // 2) 양옆의 어두운 붉은 기하 구조물 (실루엣 블록)
+      s += '<g opacity="0.4" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="1.2">';
+      s += '<rect x="12" y="22" width="56" height="22" rx="2"/>';
+      s += '<rect x="332" y="26" width="56" height="22" rx="2"/>';
       s += "</g>";
 
-      // 3) 바닥 + 붉은 가시 열 (실루엣)
-      s += '<rect x="0" y="150" width="400" height="30" fill="' + c2 + '" opacity="0.75"/>';
+      // 3) 악마 해골 (배경 중앙)
+      s += demonSkull(200, 72, 1.18, c1, c2);
+
+      // 4) 바닥 + 붉은 가시 열 (실루엣)
+      s += '<rect x="0" y="150" width="400" height="30" fill="' + c2 + '" opacity="0.78"/>';
       s += '<line x1="0" y1="150" x2="400" y2="150" stroke="' + c1 + '" stroke-width="2" opacity="0.85"/>';
       let x = 14;
       while (x < 386) {
         const w = 14 + Math.floor(rng() * 10);
-        const h = 16 + Math.floor(rng() * 22);
-        s += '<polygon points="' + x + ',150 ' + (x + w) + ',150 ' + (x + w / 2) + ',' + (150 - h) + '" fill="' + c1 + '" opacity="0.72"/>';
-        x += w + 8 + Math.floor(rng() * 14);
+        const h = 13 + Math.floor(rng() * 16);
+        s += '<polygon points="' + x + ',150 ' + (x + w) + ',150 ' + (x + w / 2) + ',' + (150 - h) + '" fill="' + c1 + '" opacity="0.68"/>';
+        x += w + 10 + Math.floor(rng() * 16);
       }
 
-      // 4) 떠다니는 붉은 글로우 오브 (밝은 중심 + 부드러운 후광)
-      for (let i = 0; i < 6; i++) {
-        const ox = 28 + Math.floor(rng() * 344);
-        const oy = 26 + Math.floor(rng() * 92);
-        const orr = 6 + Math.floor(rng() * 9);
+      // 5) 떠다니는 붉은 글로우 오브 (네 귀퉁이)
+      const orbs = [[40, 48], [360, 44], [54, 116], [348, 120]];
+      for (let i = 0; i < orbs.length; i++) {
+        const ox = orbs[i][0], oy = orbs[i][1];
+        const orr = 6 + Math.floor(rng() * 6);
         s += '<circle cx="' + ox + '" cy="' + oy + '" r="' + (orr * 2.2).toFixed(1) + '" fill="' + c1 + '" opacity="0.1"/>';
-        s += '<circle cx="' + ox + '" cy="' + oy + '" r="' + orr + '" fill="' + c1 + '" opacity="0.55"/>';
+        s += '<circle cx="' + ox + '" cy="' + oy + '" r="' + orr + '" fill="' + c1 + '" opacity="0.5"/>';
         s += '<circle cx="' + ox + '" cy="' + oy + '" r="' + (orr * 0.4).toFixed(1) + '" fill="#fff" opacity="0.5"/>';
       }
+
+      // 6) SLAUGHTERHOUSE 문구 (전경, 고딕풍 레드)
+      s += '<text x="200" y="134" text-anchor="middle" textLength="346" ' +
+        'lengthAdjust="spacingAndGlyphs" font-family="Georgia, &apos;Times New Roman&apos;, serif" ' +
+        'font-weight="bold" font-size="27" fill="' + c1 + '" stroke="#1a0006" ' +
+        'stroke-width="0.9" paint-order="stroke">SLAUGHTERHOUSE</text>';
 
       return s;
     },
