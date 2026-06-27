@@ -11,7 +11,8 @@
  *   verifier  : 베리파이(최초 클리어 인증)한 사람
  *   year      : 베리파이 연도 (모르면 "—")
  *   peakRank  : 데몬리스트 최고 순위 / 위상 (예: "1위", "톱 5")
- *   category  : 분류 — 필터 버튼에 쓰임 (아래 CATEGORIES 참고)
+ *   category  : 분류 — 필터 버튼에 쓰임 (아래 CATEGORIES 참고).
+ *               여러 분류에 동시에 넣으려면 배열로: ["1위 경쟁", "혁신"]
  *   tag       : 카드에 표시할 짧은 수식어
  *   motif     : 대표 일러스트 모티프 (main.js의 MOTIFS 참고)
  *               circles · ice · blood · fire · wave · tidal · pulse ·
@@ -180,7 +181,7 @@ const LEVELS = [
     verifier: "Combined",
     year: 2016,
     peakRank: "1위",
-    category: "1위 경쟁",
+    category: ["1위 경쟁", "혁신"],
     tag: "잠깐의 정상",
     motif: "spikes",
     colors: ["#3ad6ff", "#0a2540"],
@@ -372,7 +373,7 @@ const LEVELS = [
     verifier: "Diamond",
     year: 2021,
     peakRank: "톱급 나인서클즈",
-    category: "장르 개척",
+    category: "1위 경쟁",
     tag: "나인 서클즈류 정점",
     motif: "circles",
     colors: ["#ff2e4d", "#16001a"],

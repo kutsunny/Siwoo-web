@@ -20,6 +20,17 @@
     return div.innerHTML;
   }
 
+  // 레벨의 분류 목록 (문자열 하나 또는 배열 모두 허용)
+  function catsOf(level) {
+    if (!level.category) return [];
+    return Array.isArray(level.category) ? level.category : [level.category];
+  }
+
+  // 레벨이 특정 분류에 속하는지
+  function hasCat(level, cat) {
+    return catsOf(level).indexOf(cat) !== -1;
+  }
+
   /* -----------------------------------------------------------
      대표 일러스트 생성
      level.image 가 있으면 그 이미지를, 없으면 테마 색으로
@@ -274,7 +285,7 @@
         return (
           cat === "전체" ||
           LEVELS.some(function (lv) {
-            return lv.category === cat;
+            return hasCat(lv, cat);
           })
         );
       }
@@ -285,7 +296,7 @@
           cat === "전체"
             ? LEVELS.length
             : LEVELS.filter(function (lv) {
-                return lv.category === cat;
+                return hasCat(lv, cat);
               }).length;
         const on = cat === activeCategory ? " is-active" : "";
         return (
@@ -307,7 +318,7 @@
   function renderCards() {
     if (!grid) return;
     const list = LEVELS.filter(function (lv) {
-      return activeCategory === "전체" || lv.category === activeCategory;
+      return activeCategory === "전체" || hasCat(lv, activeCategory);
     });
     grid.innerHTML = list
       .map(function (lv) {
@@ -322,7 +333,11 @@
         '<span class="level-tag">' +
         esc(lv.tag) +
         "</span>" +
-        (lv.category ? '<span class="level-tag tag-cat">' + esc(lv.category) + "</span>" : "") +
+        catsOf(lv)
+          .map(function (c) {
+            return '<span class="level-tag tag-cat">' + esc(c) + "</span>";
+          })
+          .join("") +
         (lv.controversy ? '<span class="level-tag tag-warn">논란</span>' : "") +
         "<h3>" +
         esc(lv.name) +
