@@ -185,6 +185,7 @@ const LEVELS = [
     tag: "잠깐의 정상",
     motif: "spikes",
     colors: ["#3ad6ff", "#0a2540"],
+    video: "URwPErFdH7c",
     summary: "2016년 말 잠시 데몬리스트 1위에 올랐던 2.0 시대의 대형 콜라브.",
     history:
       "Artificial Ascent는 Viprin이 호스트하고 Combined가 2016년 12월 11일 베리파이한 2.0 시대의 대형 콜라브입니다. " +
