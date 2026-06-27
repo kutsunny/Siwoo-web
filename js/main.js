@@ -119,6 +119,65 @@
       s += '<g transform="rotate(12 70 135)"><rect x="56" y="122" width="26" height="26" rx="5" fill="' + c2 + '" stroke="#fff" stroke-width="2"/><rect x="63" y="129" width="12" height="12" rx="2" fill="#fff" opacity="0.85"/></g>';
       return s;
     },
+    // 어센트: 흑백 고대비 세계 + 파스텔 무지개 계단 + 빛나는 핀휠 버스트
+    ascent: function (c1, c2, rng) {
+      const pastel = ["#ff9ec4", "#ffc9a7", "#fff3a7", "#a7ffd0", "#a7d8ff", "#c9a7ff", "#ffa7e8"];
+      let s = "";
+
+      // 1) 어두운 기둥 (흑백 대비 배경 구조물)
+      s += '<g fill="#15161c" stroke="#3a3f4a" stroke-width="1">';
+      s += '<rect x="40" y="20" width="34" height="160"/>';
+      s += '<rect x="116" y="46" width="24" height="134"/>';
+      s += '<rect x="300" y="8" width="42" height="172"/>';
+      s += "</g>";
+
+      // 2) 흰 구름 (좌상단)
+      s += '<g fill="#ffffff" opacity="0.95">';
+      s += '<circle cx="42" cy="34" r="13"/><circle cx="62" cy="29" r="17"/><circle cx="82" cy="36" r="12"/>';
+      s += '<rect x="42" y="34" width="40" height="14"/>';
+      s += "</g>";
+
+      // 3) 흰 별
+      s += star4(252, 38, 11, "#ffffff");
+
+      // 4) 파스텔 무지개 계단 (좌하 → 우상 상승 = ascent)
+      for (let i = 0; i < 7; i++) {
+        const x = 150 + i * 26;
+        const y = 138 - i * 15;
+        s += '<rect x="' + x + '" y="' + y + '" width="26" height="26" rx="1" fill="' + pastel[i % pastel.length] + '" opacity="0.92"/>';
+      }
+
+      // 5) 빛나는 핀휠 버스트 (시안/그린)
+      function burst(cx, cy, r) {
+        let b = '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r + 4) + '" fill="#5fffe0" opacity="0.18"/>';
+        const petals = 12;
+        for (let k = 0; k < petals; k++) {
+          const a = (k / petals) * Math.PI * 2;
+          const x1 = (cx + Math.cos(a) * r * 0.45).toFixed(1);
+          const y1 = (cy + Math.sin(a) * r * 0.45).toFixed(1);
+          const x2 = (cx + Math.cos(a) * r).toFixed(1);
+          const y2 = (cy + Math.sin(a) * r).toFixed(1);
+          b += '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+            '" stroke="' + (k % 2 ? "#6cff9e" : "#5fe9ff") + '" stroke-width="2.4"/>';
+        }
+        b += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.4).toFixed(1) + '" fill="none" stroke="#5fe9ff" stroke-width="2"/>';
+        b += '<circle cx="' + cx + '" cy="' + cy + '" r="3" fill="#0a0a16"/>';
+        return b;
+      }
+      s += burst(74, 96, 22);
+      s += burst(120, 140, 15);
+
+      // 6) 붉은 포인트 블록
+      s += '<g fill="#ff3b3b">';
+      for (let i = 0; i < 4; i++) {
+        const rx = 60 + Math.floor(rng() * 290);
+        const ry = 28 + Math.floor(rng() * 110);
+        s += '<rect x="' + rx + '" y="' + ry + '" width="7" height="7"/>';
+      }
+      s += "</g>";
+
+      return s;
+    },
     // 피: 위에서 흘러내리는 핏방울 + 바닥 웅덩이
     blood: function (c1, c2, rng) {
       let s = '<rect x="0" y="150" width="400" height="30" fill="' + c1 + '" opacity="0.5"/>';

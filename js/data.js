@@ -15,8 +15,8 @@
  *               여러 분류에 동시에 넣으려면 배열로: ["1위 경쟁", "혁신"]
  *   tag       : 카드에 표시할 짧은 수식어
  *   motif     : 대표 일러스트 모티프 (main.js의 MOTIFS 참고)
- *               circles · ice · blood · slaughter · fire · wave · tidal ·
- *               pulse · stars · gold · key · limbo · gem · orbit · sound · spikes
+ *               circles · ice · blood · slaughter · ascent · fire · wave ·
+ *               tidal · pulse · stars · gold · key · limbo · gem · orbit · sound · spikes
  *   colors    : [메인색, 보조색] — 일러스트 색 테마
  *   image     : (선택) 실제 이미지 URL. 넣으면 SVG 대신 이 이미지를 사용
  *   summary   : 카드에 보일 한 줄 요약
@@ -183,8 +183,8 @@ const LEVELS = [
     peakRank: "1위",
     category: ["1위 경쟁", "혁신"],
     tag: "잠깐의 정상",
-    motif: "spikes",
-    colors: ["#3ad6ff", "#0a2540"],
+    motif: "ascent",
+    colors: ["#3a3f4a", "#08080c"],
     video: "URwPErFdH7c",
     summary: "2016년 말 잠시 데몬리스트 1위에 올랐던 2.0 시대의 대형 콜라브.",
     history:
