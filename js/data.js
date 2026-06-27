@@ -174,6 +174,25 @@ const LEVELS = [
       "레벨로 인정할 수 있는가'라는 정체성 논쟁도 길게 이어졌습니다.",
   },
   {
+    id: "artificial-ascent",
+    name: "Artificial Ascent",
+    creator: "Viprin 호스트 · LmAnubis 외 (콜라브)",
+    verifier: "Combined",
+    year: 2016,
+    peakRank: "1위",
+    category: "1위 경쟁",
+    tag: "잠깐의 정상",
+    motif: "spikes",
+    colors: ["#3ad6ff", "#0a2540"],
+    summary: "2016년 말 잠시 데몬리스트 1위에 올랐던 2.0 시대의 대형 콜라브.",
+    history:
+      "Artificial Ascent는 Viprin이 호스트하고 Combined가 2016년 12월 11일 베리파이한 2.0 시대의 대형 콜라브입니다. " +
+      "베리파이 직후 당시 1위였던 Sakupen Hell을 제치고 데몬리스트 정상에 올랐습니다.\n\n" +
+      "하지만 정상의 자리는 오래가지 못했습니다. 약 한 달 뒤 Yatagarasu가 베리파이되면서 1위를 넘겨주었고, 그만큼 " +
+      "이 시기는 최강 레벨이 빠르게 교체되던 격변기였습니다.\n\n" +
+      "초창기 익스트림 데몬 씬에서 '톱 1 경쟁'이 본격화되던 흐름을 보여주는 상징적인 레벨로 기억됩니다.",
+  },
+  {
     id: "yatagarasu",
     name: "Yatagarasu",
     creator: "Viprin & Riot (콜라브 호스트)",
@@ -261,6 +280,29 @@ const LEVELS = [
       "상징성이 큰 레벨입니다.",
   },
   {
+    id: "zodiac",
+    name: "Zodiac",
+    creator: "Bianox 호스트 · 다수 제작자 (콜라브)",
+    verifier: "Technical (정식 클리어)",
+    year: 2019,
+    peakRank: "톱급 익스트림",
+    category: "혁신",
+    tag: "베리파이 논란",
+    motif: "stars",
+    colors: ["#b388ff", "#0a0a33"],
+    summary: "별자리를 테마로 한 대형 콜라브 — 핵 베리파이 논란으로도 유명한 레벨.",
+    history:
+      "Zodiac는 Bianox가 호스트한 별자리 테마의 대형 콜라브로, 정교한 연출과 긴 길이로 큰 주목을 받은 레벨입니다. " +
+      "2017년부터 제작 소식이 알려지며 오랜 기간 기대를 모았습니다.\n\n" +
+      "베리파이 과정은 GD 역사에서 손꼽히는 사건이 되었습니다. xander가 2019년 1월 베리파이를 주장했지만, 이후 핵 " +
+      "사용 사실이 드러나면서 베리파이어 자격을 잃었습니다. 결국 같은 해 4월 9일 이 레벨을 정식으로 처음 클리어한 " +
+      "Technical이 공식 첫 정복자로 인정받았습니다.\n\n" +
+      "이 사건은 최상위권 기록에서 '무편집 영상·클릭 검증'이 왜 중요한지를 다시 한번 일깨운 대표적인 사례로 회자됩니다.",
+    controversy:
+      "xander는 2019년 1월 약 61,375회 시도 끝에 베리파이했다고 주장했지만, 핵 사용 사실을 숨겼다가 6월에 직접 고백했습니다. " +
+      "이에 레벨의 권리와 베리파이어 타이틀은 정식으로 첫 클리어에 성공한 Technical에게 넘어갔습니다. (커뮤니티 기록 기준)",
+  },
+  {
     id: "the-golden",
     name: "The Golden",
     creator: "Bo & El3cTr0 (콜라브 호스트)",
@@ -322,6 +364,27 @@ const LEVELS = [
       "베리파이는 치열한 경쟁이었습니다. Spaceuk가 2021년 10월 먼저 베리파이를 주장했으나 이후 핵 사용이 " +
       "드러나 타이틀이 박탈되었고, 같은 해 12월 19일 처음으로 정식 클리어한 Doggie가 공식 베리파이어로 인정받았습니다. " +
       "이후 Acheron 등 차세대 1위 레벨들에게 정상 자리를 넘겨주었습니다.",
+  },
+  {
+    id: "sakupen-circles",
+    name: "Sakupen Circles",
+    creator: "DrCuber & GhostVandalf 호스트 (콜라브)",
+    verifier: "Diamond",
+    year: 2021,
+    peakRank: "톱급 나인서클즈",
+    category: "장르 개척",
+    tag: "나인 서클즈류 정점",
+    motif: "circles",
+    colors: ["#ff2e4d", "#16001a"],
+    summary: "1.9 시절 불가능 레벨을 리메이크한, 나인 서클즈류의 정점급 레벨.",
+    history:
+      "Sakupen Circles는 DrCuber와 GhostVandalf가 호스트하고 Diamond가 2021년 12월 29일 베리파이·공개한 " +
+      "나인 서클즈(Nine Circles)류 레벨입니다. 1.9 시절 같은 이름의 불가능 레벨을 리메이크한 작품으로, 옛 레벨 " +
+      "Iron God의 게임플레이 아이디어도 일부 가져왔습니다.\n\n" +
+      "원본 게임플레이는 Nick24가 만들었고 Muffy450이 곳곳을 다듬었습니다. 살벌한 붉은 연출과 극도로 빠른 웨이브 " +
+      "구간이 특징으로, 나인 서클즈 장르가 도달한 난이도의 정점을 보여줍니다.\n\n" +
+      "이름이 비슷한 'Sakupen Hell'과는 전혀 다른 레벨이니 주의하세요. 나인 서클즈 장르에 속하는 쪽은 이 " +
+      "Sakupen Circles입니다.",
   },
   {
     id: "acheron",
@@ -446,6 +509,27 @@ const LEVELS = [
       "등장하며 순위가 조정되었지만, 한 시대의 최정상을 장식한 레벨로 남았습니다.",
   },
   {
+    id: "flamewall",
+    name: "Flamewall",
+    creator: "Narwall 호스트 · RicoLP 외 (콜라브)",
+    verifier: "Cuatrocientos",
+    year: 2025,
+    peakRank: "톱 3급",
+    category: "1위 경쟁",
+    tag: "초장편 톱급",
+    motif: "fire",
+    colors: ["#ff7a18", "#3a0a00"],
+    summary: "6분 46초에 달하는 초장편 — 톱 1급 난이도로 화제가 된 대형 콜라브.",
+    history:
+      "Flamewall는 Narwall가 호스트·공개한(이전 호스트 RicoLP) 대형 콜라브로, Cuatrocientos가 2025년 9월 21일 " +
+      "약 221,703회 시도 끝에 베리파이했습니다. 당시 톱 1급 난이도 레벨 중 가장 긴 6분 46초 길이로, 54개 파트와 " +
+      "40만 개가 넘는 오브젝트로 이루어졌습니다.\n\n" +
+      "Cuatrocientos가 이 레벨 이전에 클리어한 최고 난이도가 Belladonna였기에, 역대급으로 큰 난이도 점프를 한 " +
+      "베리파이로도 화제가 되었습니다.\n\n" +
+      "100명이 넘는 플레이테스터와 데코레이터가 참여했으며, Geometry Dash 2025 어워드에서 'Best Extreme Classic'을 " +
+      "수상했습니다.",
+  },
+  {
     id: "orbit",
     name: "ORBIT",
     creator: "MindCap (콜라브 호스트)",
@@ -464,6 +548,24 @@ const LEVELS = [
       "플레이 경험을 제공합니다.\n\n" +
       "베리파이 다음 날 곧바로 레이팅을 받았고, 클래식 익스트림 데몬으로는 처음으로 '신화(Mythic)' 등급을 받았습니다. " +
       "이후 데몬리스트 톱 5권에 자리하며, MindCap이 만들어내는 혁신적 설계의 흐름을 다시 한 번 보여주었습니다.",
+  },
+  {
+    id: "society",
+    name: "Society",
+    creator: "Neomarbilan 호스트 (콜라브)",
+    verifier: "wPopoff",
+    year: 2026,
+    peakRank: "1위",
+    category: "1위 경쟁",
+    tag: "신(新) 1위",
+    motif: "spikes",
+    colors: ["#00e5ff", "#10103a"],
+    summary: "Escalator의 후속격 대형 콜라브 — 2026년 새롭게 정상에 오른 레벨.",
+    history:
+      "Society는 Neomarbilan가 호스트한 대형 콜라브로, wPopoff가 2026년 6월 20일 베리파이하며 데몬리스트 1위에 " +
+      "오른 레벨입니다. 인기 레벨 Escalator의 후속격 작품으로 제작되었습니다.\n\n" +
+      "최신 세대의 톱 1 경쟁을 보여주는 레벨로, 베리파이 직후 곧바로 정상에 자리하며 큰 화제를 모았습니다.\n\n" +
+      "데몬리스트 최상위권은 늘 빠르게 교체되는 만큼, 순위와 위상은 이후에도 계속 변동될 수 있습니다.",
   },
   {
     id: "silent-clubstep",
