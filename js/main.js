@@ -284,6 +284,49 @@
       }
       return artGround(c1, c2) + key(110, 78, 1.1, c1) + key(235, 112, 0.85, c2) + key(305, 56, 0.7, c1);
     },
+    // 림보: 마지막 '열쇠 야바위(셸 게임)' 파트 — 슬롯 8칸에 작은 열쇠
+    limbo: function (c1, c2) {
+      // 작은 세로형 열쇠
+      function smallKey(cx, cy, c, glow) {
+        return (
+          '<g transform="translate(' + cx + ' ' + cy + ')" stroke="' + c + '" ' +
+          'stroke-width="' + (glow ? 3.2 : 2.4) + '" fill="none" stroke-linecap="round" ' +
+          'opacity="' + (glow ? 1 : 0.82) + '">' +
+          '<circle cx="0" cy="-12" r="5.5"/>' +
+          '<line x1="0" y1="-6.5" x2="0" y2="16"/>' +
+          '<line x1="0" y1="8" x2="6" y2="8"/>' +
+          '<line x1="0" y1="14" x2="5" y2="14"/>' +
+          "</g>"
+        );
+      }
+
+      let s = "";
+      // 배경 글로우 + 바닥
+      s += '<circle cx="200" cy="90" r="150" fill="' + c1 + '" opacity="0.08"/>';
+      s += artGround(c1, c2);
+
+      // 야바위 슬롯 8칸 + 작은 열쇠 (한 칸만 정답으로 강조)
+      const n = 8;
+      const pick = 5;
+      const cy = 92;
+      for (let i = 0; i < n; i++) {
+        const cx = 31 + (i * 338) / (n - 1); // 31 ~ 369 균등 배치
+        const on = i === pick;
+        // 슬롯(컵) — 둥근 사각
+        s += '<rect x="' + (cx - 17) + '" y="' + (cy - 30) + '" width="34" height="58" rx="6" ' +
+          'fill="' + c2 + '" opacity="' + (on ? 0.85 : 0.55) + '" stroke="' + c1 + '" ' +
+          'stroke-width="' + (on ? 2 : 1.2) + '" stroke-opacity="' + (on ? 0.95 : 0.45) + '"/>';
+        // 정답 칸 발광
+        if (on) {
+          s += '<rect x="' + (cx - 17) + '" y="' + (cy - 30) + '" width="34" height="58" rx="6" ' +
+            'fill="' + c1 + '" opacity="0.18"/>';
+        }
+        // 열쇠
+        s += smallKey(cx, cy, c1, on);
+      }
+
+      return s;
+    },
     // 보석: 깎인 면을 가진 크리스털 (Amethyst)
     gem: function (c1, c2) {
       const cx = 200, cy = 92;

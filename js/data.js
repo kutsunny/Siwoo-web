@@ -16,7 +16,7 @@
  *   tag       : 카드에 표시할 짧은 수식어
  *   motif     : 대표 일러스트 모티프 (main.js의 MOTIFS 참고)
  *               circles · ice · blood · slaughter · fire · wave · tidal ·
- *               pulse · stars · gold · key · gem · orbit · sound · spikes
+ *               pulse · stars · gold · key · limbo · gem · orbit · sound · spikes
  *   colors    : [메인색, 보조색] — 일러스트 색 테마
  *   image     : (선택) 실제 이미지 URL. 넣으면 SVG 대신 이 이미지를 사용
  *   summary   : 카드에 보일 한 줄 요약
@@ -416,7 +416,7 @@ const LEVELS = [
     peakRank: "톱 7",
     category: "혁신",
     tag: "메모리 게임플레이",
-    motif: "key",
+    motif: "limbo",
     colors: ["#6a4bff", "#140a26"],
     video: "ryBbuH_SPbs",
     summary: "'같은 구간도 매번 다르게' — 암기를 무력화한 혁신적 메모리 데몬.",
