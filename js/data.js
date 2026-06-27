@@ -15,8 +15,8 @@
  *               여러 분류에 동시에 넣으려면 배열로: ["1위 경쟁", "혁신"]
  *   tag       : 카드에 표시할 짧은 수식어
  *   motif     : 대표 일러스트 모티프 (main.js의 MOTIFS 참고)
- *               circles · ice · blood · fire · wave · tidal · pulse ·
- *               stars · gold · key · gem · orbit · sound · spikes
+ *               circles · ice · blood · slaughter · fire · wave · tidal ·
+ *               pulse · stars · gold · key · gem · orbit · sound · spikes
  *   colors    : [메인색, 보조색] — 일러스트 색 테마
  *   image     : (선택) 실제 이미지 URL. 넣으면 SVG 대신 이 이미지를 사용
  *   summary   : 카드에 보일 한 줄 요약
@@ -353,8 +353,8 @@ const LEVELS = [
     peakRank: "1위",
     category: "1위 경쟁",
     tag: "1위 등극",
-    motif: "blood",
-    colors: ["#ff2d2d", "#2b0000"],
+    motif: "slaughter",
+    colors: ["#ff1f3a", "#1a0006"],
     video: "7W5bZJY2IPI",
     summary: "2021년 정상에 오른 잔혹한 난이도의 대형 콜라브.",
     history:

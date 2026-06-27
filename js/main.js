@@ -103,6 +103,47 @@
       }
       return s;
     },
+    // 슬러터하우스: 칠흑 속 진홍빛 글로우 + 붉은 기하 구조물·가시·빛나는 오브
+    slaughter: function (c1, c2, rng) {
+      let s = "";
+
+      // 1) 중앙에서 번지는 붉은 글로우 (반투명 원을 겹쳐 방사형처럼)
+      s += '<circle cx="200" cy="96" r="160" fill="' + c1 + '" opacity="0.08"/>';
+      s += '<circle cx="200" cy="96" r="105" fill="' + c1 + '" opacity="0.11"/>';
+      s += '<circle cx="200" cy="96" r="58" fill="' + c1 + '" opacity="0.14"/>';
+
+      // 2) 배경의 어두운 붉은 기하 구조물 (실루엣 블록 + 사선 슬래브)
+      s += '<g opacity="0.5" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="1.5">';
+      s += '<rect x="18" y="28" width="72" height="26" rx="2"/>';
+      s += '<rect x="312" y="32" width="74" height="24" rx="2"/>';
+      s += '<polygon points="150,68 250,68 234,44 166,44"/>';
+      s += '<polygon points="96,118 150,118 138,150 108,150"/>';
+      s += '<polygon points="250,150 280,118 334,118 322,150"/>';
+      s += "</g>";
+
+      // 3) 바닥 + 붉은 가시 열 (실루엣)
+      s += '<rect x="0" y="150" width="400" height="30" fill="' + c2 + '" opacity="0.75"/>';
+      s += '<line x1="0" y1="150" x2="400" y2="150" stroke="' + c1 + '" stroke-width="2" opacity="0.85"/>';
+      let x = 14;
+      while (x < 386) {
+        const w = 14 + Math.floor(rng() * 10);
+        const h = 16 + Math.floor(rng() * 22);
+        s += '<polygon points="' + x + ',150 ' + (x + w) + ',150 ' + (x + w / 2) + ',' + (150 - h) + '" fill="' + c1 + '" opacity="0.72"/>';
+        x += w + 8 + Math.floor(rng() * 14);
+      }
+
+      // 4) 떠다니는 붉은 글로우 오브 (밝은 중심 + 부드러운 후광)
+      for (let i = 0; i < 6; i++) {
+        const ox = 28 + Math.floor(rng() * 344);
+        const oy = 26 + Math.floor(rng() * 92);
+        const orr = 6 + Math.floor(rng() * 9);
+        s += '<circle cx="' + ox + '" cy="' + oy + '" r="' + (orr * 2.2).toFixed(1) + '" fill="' + c1 + '" opacity="0.1"/>';
+        s += '<circle cx="' + ox + '" cy="' + oy + '" r="' + orr + '" fill="' + c1 + '" opacity="0.55"/>';
+        s += '<circle cx="' + ox + '" cy="' + oy + '" r="' + (orr * 0.4).toFixed(1) + '" fill="#fff" opacity="0.5"/>';
+      }
+
+      return s;
+    },
     // 불: 바닥에서 솟는 불꽃
     fire: function (c1, c2, rng) {
       let s = artGround(c1, c2);
