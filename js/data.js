@@ -418,6 +418,7 @@ const LEVELS = [
     tag: "메모리 게임플레이",
     motif: "key",
     colors: ["#6a4bff", "#140a26"],
+    video: "ryBbuH_SPbs",
     summary: "'같은 구간도 매번 다르게' — 암기를 무력화한 혁신적 메모리 데몬.",
     history:
       "LIMBO는 MindCap이 호스트한 대형 콜라브로(코호스트 Djoxy), 2022년 11월 BGram이 약 10만 9천 번의 시도 끝에 " +
