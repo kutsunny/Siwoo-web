@@ -287,7 +287,7 @@ const LEVELS = [
     verifier: "Technical (정식 클리어)",
     year: 2019,
     peakRank: "톱급 익스트림",
-    category: "혁신",
+    category: "1위 경쟁",
     tag: "베리파이 논란",
     motif: "stars",
     colors: ["#b388ff", "#0a0a33"],
