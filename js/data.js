@@ -417,7 +417,7 @@ const LEVELS = [
     category: "혁신",
     tag: "메모리 게임플레이",
     motif: "limbo",
-    colors: ["#6a4bff", "#140a26"],
+    colors: ["#2a2350", "#080612"],
     video: "ryBbuH_SPbs",
     summary: "'같은 구간도 매번 다르게' — 암기를 무력화한 혁신적 메모리 데몬.",
     history:

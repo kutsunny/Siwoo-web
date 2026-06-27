@@ -284,45 +284,54 @@
       }
       return artGround(c1, c2) + key(110, 78, 1.1, c1) + key(235, 112, 0.85, c2) + key(305, 56, 0.7, c1);
     },
-    // 림보: 마지막 '열쇠 야바위(셸 게임)' 파트 — 슬롯 8칸에 작은 열쇠
-    limbo: function (c1, c2) {
-      // 작은 세로형 열쇠
-      function smallKey(cx, cy, c, glow) {
+    // 림보: 어둠 속 무지갯빛 배경에 각기 다른 색의 열쇠들이 어지럽게 날뛰는 그림
+    limbo: function (c1, c2, rng) {
+      const palette = [
+        "#ff3b3b", "#ff8a2c", "#ffe23d", "#bfff3d", "#46e06a",
+        "#32d4ff", "#5b7bff", "#c15cff", "#ff5ca8",
+      ];
+
+      // 한 자루의 열쇠 (회전 가능) — 어떤 방향으로도 날뛰게
+      function key(cx, cy, sc, rot, c) {
         return (
-          '<g transform="translate(' + cx + ' ' + cy + ')" stroke="' + c + '" ' +
-          'stroke-width="' + (glow ? 3.2 : 2.4) + '" fill="none" stroke-linecap="round" ' +
-          'opacity="' + (glow ? 1 : 0.82) + '">' +
-          '<circle cx="0" cy="-12" r="5.5"/>' +
-          '<line x1="0" y1="-6.5" x2="0" y2="16"/>' +
-          '<line x1="0" y1="8" x2="6" y2="8"/>' +
-          '<line x1="0" y1="14" x2="5" y2="14"/>' +
+          '<g transform="translate(' + cx.toFixed(1) + " " + cy.toFixed(1) +
+          ") rotate(" + rot.toFixed(1) + ") scale(" + sc.toFixed(2) + ')" ' +
+          'stroke="' + c + '" stroke-width="3.2" fill="none" ' +
+          'stroke-linecap="round" stroke-linejoin="round">' +
+          '<circle cx="-13" cy="0" r="6"/>' +
+          '<line x1="-7" y1="0" x2="18" y2="0"/>' +
+          '<line x1="9" y1="0" x2="9" y2="7"/>' +
+          '<line x1="15" y1="0" x2="15" y2="8"/>' +
           "</g>"
         );
       }
 
       let s = "";
-      // 배경 글로우 + 바닥
-      s += '<circle cx="200" cy="90" r="150" fill="' + c1 + '" opacity="0.08"/>';
-      s += artGround(c1, c2);
 
-      // 야바위 슬롯 8칸 + 작은 열쇠 (한 칸만 정답으로 강조)
-      const n = 8;
-      const pick = 5;
-      const cy = 92;
-      for (let i = 0; i < n; i++) {
-        const cx = 31 + (i * 338) / (n - 1); // 31 ~ 369 균등 배치
-        const on = i === pick;
-        // 슬롯(컵) — 둥근 사각
-        s += '<rect x="' + (cx - 17) + '" y="' + (cy - 30) + '" width="34" height="58" rx="6" ' +
-          'fill="' + c2 + '" opacity="' + (on ? 0.85 : 0.55) + '" stroke="' + c1 + '" ' +
-          'stroke-width="' + (on ? 2 : 1.2) + '" stroke-opacity="' + (on ? 0.95 : 0.45) + '"/>';
-        // 정답 칸 발광
-        if (on) {
-          s += '<rect x="' + (cx - 17) + '" y="' + (cy - 30) + '" width="34" height="58" rx="6" ' +
-            'fill="' + c1 + '" opacity="0.18"/>';
-        }
+      // 1) 어둠 속 무지갯빛 글로우 (색색의 빛이 부드럽게 번짐)
+      for (let i = 0; i < palette.length; i++) {
+        const gx = 40 + (i * 320) / (palette.length - 1) + (rng() * 36 - 18);
+        const gy = 45 + rng() * 92;
+        const gr = 58 + rng() * 46;
+        s += '<circle cx="' + gx.toFixed(1) + '" cy="' + gy.toFixed(1) +
+          '" r="' + gr.toFixed(1) + '" fill="' + palette[i] + '" opacity="0.1"/>';
+      }
+
+      // 2) 날뛰는 색색의 열쇠 (느슨한 격자 + 흔들림 + 자유 회전)
+      const cols = 3;
+      for (let i = 0; i < palette.length; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const cx = 68 + col * 132 + (rng() * 56 - 28);
+        const cy = 40 + row * 46 + (rng() * 28 - 14);
+        const sc = 0.85 + rng() * 0.6;
+        const rot = rng() * 360;
+        const c = palette[i];
+        // 열쇠 색 후광
+        s += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) +
+          '" r="' + (15 * sc).toFixed(1) + '" fill="' + c + '" opacity="0.16"/>';
         // 열쇠
-        s += smallKey(cx, cy, c1, on);
+        s += key(cx, cy, sc, rot, c);
       }
 
       return s;
