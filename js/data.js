@@ -462,6 +462,7 @@ const LEVELS = [
     tag: "차세대 정점",
     motif: "tidal",
     colors: ["#00e0d0", "#003a66"],
+    video: "frjtBcNI6dI",
     summary: "2023년 Zoink가 베리파이한, 한 시대를 대표하는 최강 레벨.",
     history:
       "Tidal Wave는 OniLink가 제작하고 2023년 Zoink가 베리파이한 레벨로, 오랜 기간 데몬리스트 정상권을 지킨 " +
