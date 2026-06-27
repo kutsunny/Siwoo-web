@@ -124,6 +124,16 @@
       const pastel = ["#ff9ec4", "#ffc9a7", "#fff3a7", "#a7ffd0", "#a7d8ff", "#c9a7ff", "#ffa7e8"];
       let s = "";
 
+      // 0) 어둠 속 무지갯빛 글로우 (가장 뒤 레이어)
+      const rainbow = ["#ff4d6d", "#ff9e3d", "#ffe23d", "#46e06a", "#32d4ff", "#5b7bff", "#c15cff"];
+      for (let i = 0; i < rainbow.length; i++) {
+        const gx = 36 + (i * 328) / (rainbow.length - 1) + (rng() * 30 - 15);
+        const gy = 40 + rng() * 100;
+        const gr = 56 + rng() * 44;
+        s += '<circle cx="' + gx.toFixed(1) + '" cy="' + gy.toFixed(1) +
+          '" r="' + gr.toFixed(1) + '" fill="' + rainbow[i] + '" opacity="0.11"/>';
+      }
+
       // 1) 어두운 기둥 (흑백 대비 배경 구조물)
       s += '<g fill="#15161c" stroke="#3a3f4a" stroke-width="1">';
       s += '<rect x="40" y="20" width="34" height="160"/>';
