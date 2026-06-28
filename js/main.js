@@ -256,6 +256,80 @@
       }
       return s;
     },
+    // 플레임월: 불지옥 글로우 + 뿔 악마 머리 + 늘어진 사슬 + 솟구치는 불꽃 + 균열난 FLAMEWALL 문구
+    flamewall: function (c1, c2, rng) {
+      let s = "";
+
+      // 한 줄기 사슬 (위에서 늘어뜨림 — 가로/세로 링 교차)
+      function chain(x, y0, y1) {
+        let g = '<g stroke="#9a9fa8" stroke-width="2" fill="none" opacity="0.5">';
+        let y = y0, i = 0;
+        while (y < y1) {
+          if (i % 2 === 0) g += '<ellipse cx="' + x + '" cy="' + (y + 5) + '" rx="3" ry="5.5"/>';
+          else g += '<ellipse cx="' + x + '" cy="' + (y + 5) + '" rx="5.5" ry="3"/>';
+          y += 9; i++;
+        }
+        return g + "</g>";
+      }
+
+      // 뿔 달린 악마 머리 (상단 중앙, 발광 실루엣)
+      function demonHead(cx, cy, sc) {
+        let g = '<g transform="translate(' + cx + " " + cy + ") scale(" + sc + ')">';
+        g += '<circle cx="0" cy="0" r="44" fill="' + c1 + '" opacity="0.16"/>';
+        g += '<path d="M -14 -10 Q -42 -22 -52 -54 Q -30 -34 -6 -22 Z" fill="#1a0600" stroke="' + c1 + '" stroke-width="1.4"/>';
+        g += '<path d="M 14 -10 Q 42 -22 52 -54 Q 30 -34 6 -22 Z" fill="#1a0600" stroke="' + c1 + '" stroke-width="1.4"/>';
+        g += '<path d="M -22 -8 C -24 -28 -10 -34 0 -34 C 10 -34 24 -28 22 -8 C 20 8 10 18 0 30 C -10 18 -20 8 -22 -8 Z" fill="#1a0600" stroke="' + c1 + '" stroke-width="1.4"/>';
+        g += '<circle cx="-9" cy="-8" r="6" fill="' + c1 + '" opacity="0.35"/>';
+        g += '<circle cx="9" cy="-8" r="6" fill="' + c1 + '" opacity="0.35"/>';
+        g += '<polygon points="-15,-12 -4,-6 -7,-1 -15,-4" fill="#ffd24a"/>';
+        g += '<polygon points="15,-12 4,-6 7,-1 15,-4" fill="#ffd24a"/>';
+        return g + "</g>";
+      }
+
+      // 1) 상단 지옥 글로우
+      s += '<circle cx="200" cy="40" r="120" fill="' + c1 + '" opacity="0.10"/>';
+      s += '<circle cx="200" cy="34" r="68" fill="' + c1 + '" opacity="0.12"/>';
+
+      // 2) 늘어진 사슬 (네 줄기)
+      s += chain(40, 0, 60) + chain(118, 0, 40) + chain(282, 0, 40) + chain(360, 0, 60);
+
+      // 3) 뿔 악마 머리
+      s += demonHead(200, 42, 0.92);
+
+      // 4) 바닥의 작은 해골 (불꽃 뒤로 살짝)
+      s += demonSkull(200, 138, 0.5, c1, c2);
+
+      // 5) 솟구치는 불꽃 (바닥 가득)
+      s += '<rect x="0" y="150" width="400" height="30" fill="' + c1 + '" opacity="0.22"/>';
+      for (let i = 0; i < 9; i++) {
+        const x = 22 + i * 46 + rng() * 10;
+        const h = 34 + rng() * 48;
+        s += '<path d="M ' + x.toFixed(1) + ' 152 Q ' + (x - 16).toFixed(1) + " " + (152 - h * 0.55).toFixed(1) +
+          " " + x.toFixed(1) + " " + (152 - h).toFixed(1) + " Q " + (x + 16).toFixed(1) + " " + (152 - h * 0.55).toFixed(1) +
+          " " + x.toFixed(1) + ' 152 Z" fill="' + c1 + '" opacity="0.55"/>';
+        s += '<path d="M ' + x.toFixed(1) + ' 152 Q ' + (x - 8).toFixed(1) + " " + (152 - h * 0.42).toFixed(1) +
+          " " + x.toFixed(1) + " " + (152 - h * 0.62).toFixed(1) + " Q " + (x + 8).toFixed(1) + " " + (152 - h * 0.42).toFixed(1) +
+          " " + x.toFixed(1) + ' 152 Z" fill="#ffd24a" opacity="0.7"/>';
+      }
+
+      // 6) FLAMEWALL 문구 (전경, 발광 + 다크 윤곽)
+      s += '<text x="200" y="113" text-anchor="middle" textLength="362" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="42" ' +
+        'fill="' + c1 + '" opacity="0.25">FLAMEWALL</text>';
+      s += '<text x="200" y="111" text-anchor="middle" textLength="356" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="38" ' +
+        'fill="#ffb43d" stroke="#2a0600" stroke-width="1.4" paint-order="stroke">FLAMEWALL</text>';
+
+      // 7) 떠다니는 불티
+      for (let i = 0; i < 14; i++) {
+        const ex = (rng() * 400).toFixed(1);
+        const ey = (40 + rng() * 100).toFixed(1);
+        const er = (0.6 + rng() * 1.6).toFixed(1);
+        s += '<circle cx="' + ex + '" cy="' + ey + '" r="' + er + '" fill="#ffce5e" opacity="' + (0.3 + rng() * 0.5).toFixed(2) + '"/>';
+      }
+
+      return s;
+    },
     // 웨이브: 날카로운 지그재그 라인
     wave: function (c1, c2, rng) {
       let s = artGround(c1, c2);

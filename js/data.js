@@ -527,7 +527,7 @@ const LEVELS = [
     peakRank: "톱 3급",
     category: "1위 경쟁",
     tag: "초장편 톱급",
-    motif: "fire",
+    motif: "flamewall",
     colors: ["#ff7a18", "#3a0a00"],
     video: "x4Io4zkWVRw",
     summary: "6분 46초에 달하는 초장편 — 톱 1급 난이도로 화제가 된 대형 콜라브.",
