@@ -540,6 +540,30 @@ const LEVELS = [
       "수상했습니다.",
   },
   {
+    id: "sakupen-circles-unnerfed",
+    name: "Sakupen Circles (Unnerfed)",
+    creator: "Nick24 (원본 1.9)",
+    verifier: "ad3usgmd",
+    year: 2025,
+    peakRank: "역대급 나인서클즈",
+    category: ["불가능 레벨", "역사"],
+    tag: "10년 만의 베리파이",
+    motif: "circles",
+    colors: ["#ff2e4d", "#120006"],
+    summary: "10년 가까이 '불가능'으로 남아 있던 1.9 원본 나인 서클즈가 2025년 마침내 베리파이됐다.",
+    history:
+      "이 레벨은 흔히 'Unnerfed Sakupen Circles'(USKC)로 불리는, Nick24가 1.9 시절 만든 원본 나인 서클즈류 " +
+      "레벨입니다. 2021년 Diamond가 베리파이한 'Sakupen Circles' 리메이크와 달리, 이쪽은 악명 높은 미니 웨이브 " +
+      "스팸 구간이 전혀 너프되지 않은 원본 그대로의 버전입니다.\n\n" +
+      "두 블록 간격을 통과하는 극한의 컨트롤 미니 웨이브 스팸(약 59%~66%) 때문에 거의 10년간 '인간이 클리어할 수 " +
+      "없는 레벨'로 여겨졌습니다. 2021년 리메이크에서 Diamond가 이 구간을 크게 너프했고, 원본의 난이도를 보여주려 " +
+      "'포즈 버퍼링' 같은 꼼수를 시연하자 RobTop이 빠른 포즈 사용을 제한하는 패치를 넣기도 했습니다.\n\n" +
+      "결국 2025년 7월 15일, 러시아 플레이어 ad3usgmd가 약 267,516회 시도 끝에 너프 없는 원본을 베리파이하며 " +
+      "역대 가장 어려운 나인 서클즈 레벨 중 하나로 기록됐습니다. 이후 2025년 10월 17일 ROZE가 약 45,000회 만에 " +
+      "첫 빅터(legitimate victor)에 올랐습니다.\n\n" +
+      "이름이 비슷한 'Sakupen Hell', 그리고 같은 이름의 2021년 리메이크와 혼동하지 않도록 주의하세요.",
+  },
+  {
     id: "orbit",
     name: "ORBIT",
     creator: "MindCap (콜라브 호스트)",
