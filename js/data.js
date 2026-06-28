@@ -28,7 +28,7 @@
  */
 
 // 필터에 표시할 카테고리 순서
-const CATEGORIES = ["전체", "1위 경쟁", "장르 개척", "혁신", "역사", "불가능 레벨"];
+const CATEGORIES = ["전체", "1위 경쟁", "장르 개척", "혁신", "역사", "불가능 레벨", "미평가"];
 
 const LEVELS = [
   {
@@ -546,7 +546,7 @@ const LEVELS = [
     verifier: "ad3usgmd",
     year: 2025,
     peakRank: "역대급 나인서클즈",
-    category: ["불가능 레벨", "역사"],
+    category: ["미평가", "불가능 레벨", "역사"],
     tag: "10년 만의 베리파이",
     motif: "circles",
     colors: ["#ff2e4d", "#120006"],
