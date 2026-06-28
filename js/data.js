@@ -28,7 +28,7 @@
  */
 
 // 필터에 표시할 카테고리 순서
-const CATEGORIES = ["전체", "1위 경쟁", "장르 개척", "혁신", "역사", "불가능 레벨", "미평가"];
+const CATEGORIES = ["전체", "1위 경쟁", "장르 개척", "혁신", "역사", "불가능 레벨", "미평가", "업커밍"];
 
 const LEVELS = [
   {
@@ -620,7 +620,7 @@ const LEVELS = [
     verifier: "미정 · 미공개",
     year: "—",
     peakRank: "예정 1위 (미공개)",
-    category: "역사",
+    category: "업커밍",
     tag: "전설의 미공개작",
     motif: "blood",
     colors: ["#c0152e", "#0c0306"],
