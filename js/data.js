@@ -466,8 +466,8 @@ const LEVELS = [
     peakRank: "1위",
     category: "1위 경쟁",
     tag: "차세대 정점",
-    motif: "tidal",
-    colors: ["#00e0d0", "#003a66"],
+    motif: "tidalwave",
+    colors: ["#22c8ff", "#06365f"],
     video: "frjtBcNI6dI",
     summary: "2023년 Zoink가 베리파이한, 한 시대를 대표하는 최강 레벨.",
     history:

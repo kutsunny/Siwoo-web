@@ -353,6 +353,77 @@
       s += '<circle cx="300" cy="95" r="11" fill="none" stroke="' + c1 + '" stroke-width="4" opacity="0.85"/>';
       return s;
     },
+    // 타이달 웨이브: 밝은 하늘·바다 + 핑크 네온 지그재그 웨이브 + 매달린 가시 + 톱날 + 물보라 + TIDAL WAVE 문구
+    tidalwave: function (c1, c2, rng) {
+      let s = "";
+
+      // 구름 한 덩이
+      function cloud(cx, cy, sc) {
+        return '<g transform="translate(' + cx + " " + cy + ") scale(" + sc + ')" fill="#ffffff" opacity="0.8">' +
+          '<circle cx="0" cy="0" r="11"/><circle cx="15" cy="-4" r="14"/><circle cx="32" cy="1" r="10"/>' +
+          '<rect x="0" y="0" width="32" height="11"/></g>';
+      }
+      // 검은 톱날
+      function saw(cx, cy, r) {
+        const teeth = 12;
+        let pts = "";
+        for (let k = 0; k < teeth * 2; k++) {
+          const a = (k / (teeth * 2)) * Math.PI * 2;
+          const rr = k % 2 === 0 ? r : r * 0.74;
+          pts += (cx + Math.cos(a) * rr).toFixed(1) + "," + (cy + Math.sin(a) * rr).toFixed(1) + " ";
+        }
+        return '<polygon points="' + pts.trim() + '" fill="#0a1626"/>' +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.4).toFixed(1) + '" fill="' + c1 + '" opacity="0.7"/>' +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.18).toFixed(1) + '" fill="#0a1626"/>';
+      }
+
+      // 1) 구름
+      s += cloud(40, 30, 1) + cloud(250, 24, 0.85) + cloud(330, 44, 1.1);
+
+      // 2) 바다 수평선
+      s += '<rect x="0" y="96" width="400" height="84" fill="' + c2 + '" opacity="0.45"/>';
+      s += '<line x1="0" y1="96" x2="400" y2="96" stroke="#ffffff" stroke-width="1.5" opacity="0.4"/>';
+
+      // 3) 위에서 매달린 파란 삼각 가시
+      let x = 0;
+      while (x < 400) {
+        const w = 20 + rng() * 22;
+        const h = 26 + rng() * 40;
+        s += '<polygon points="' + x.toFixed(1) + ",0 " + (x + w).toFixed(1) + ",0 " + (x + w / 2).toFixed(1) + "," + h.toFixed(1) +
+          '" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="1.5" opacity="0.55"/>';
+        x += w + rng() * 14;
+      }
+
+      // 4) 검은 톱날 (좌측)
+      s += saw(92, 116, 25);
+
+      // 5) 핑크 네온 지그재그 웨이브 (좌측 전경)
+      let pts = "", zx = -10, up = true;
+      while (zx <= 214) {
+        pts += zx + "," + (up ? 58 : 150) + " ";
+        zx += 44; up = !up;
+      }
+      s += '<polyline points="' + pts.trim() + '" fill="none" stroke="#ff7ad8" stroke-width="11" opacity="0.25"/>';
+      s += '<polyline points="' + pts.trim() + '" fill="none" stroke="#ff4dc4" stroke-width="4" opacity="0.95"/>';
+
+      // 6) 바닥 물보라 (흰 포말 + 물방울)
+      s += '<path d="M 0 158 Q 30 148 60 158 T 120 158 T 180 158 T 240 158 T 300 158 T 360 158 T 420 158 L 420 180 L 0 180 Z" fill="#ffffff" opacity="0.85"/>';
+      for (let i = 0; i < 10; i++) {
+        const dx = Math.floor(rng() * 400);
+        const dy = 138 + Math.floor(rng() * 18);
+        s += '<circle cx="' + dx + '" cy="' + dy + '" r="' + (1.4 + rng() * 2).toFixed(1) + '" fill="#fff" opacity="0.8"/>';
+      }
+
+      // 7) TIDAL WAVE 문구 (금색 + 흰색)
+      s += '<text x="205" y="122" text-anchor="middle" textLength="150" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="34" ' +
+        'fill="#ffd23d" stroke="#06365f" stroke-width="2" paint-order="stroke">TIDAL</text>';
+      s += '<text x="210" y="150" text-anchor="middle" textLength="172" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="&apos;Brush Script MT&apos;, &apos;Segoe Script&apos;, cursive" font-weight="700" font-size="30" ' +
+        'fill="#ffffff" stroke="#1a6ea0" stroke-width="1.5" paint-order="stroke">WAVE</text>';
+
+      return s;
+    },
     // 동심원: Nine Circles류 상징
     circles: function (c1, c2) {
       let s = '';
