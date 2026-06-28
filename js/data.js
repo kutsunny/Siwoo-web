@@ -578,6 +578,7 @@ const LEVELS = [
     tag: "오브로 이루어진 우주",
     motif: "orbit",
     colors: ["#4d7bff", "#0a0a2e"],
+    video: "QKcv8DkNPd0",
     summary: "모든 입력이 '오브'인 깊은 우주 테마 — 독특한 플레이로 신화(Mythic) 등급을 받은 레벨.",
     history:
       "ORBIT은 MindCap이 호스트한 대형 콜라브로, 2026년 2월 Zoink가 베리파이했습니다. 행성·별·블랙홀 같은 천체를 " +
