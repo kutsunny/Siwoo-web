@@ -494,14 +494,74 @@
       s += star4(cx + 62, cy - 28, 7, '#fff');
       return s;
     },
-    // 궤도: 행성과 공전 궤도 (ORBIT, 바닥 없음)
-    orbit: function (c1, c2) {
-      const cx = 200, cy = 90;
-      let s = '<ellipse cx="' + cx + '" cy="' + cy + '" rx="120" ry="42" fill="none" stroke="' + c1 + '" stroke-width="2" opacity="0.7"/>';
-      s += '<ellipse cx="' + cx + '" cy="' + cy + '" rx="80" ry="28" fill="none" stroke="' + c2 + '" stroke-width="2" opacity="0.7" transform="rotate(-18 ' + cx + ' ' + cy + ')"/>';
-      s += '<circle cx="' + cx + '" cy="' + cy + '" r="22" fill="' + c1 + '"/>';
-      s += '<circle cx="' + (cx - 7) + '" cy="' + (cy - 7) + '" r="6" fill="#fff" opacity="0.45"/>';
-      s += '<circle cx="' + (cx + 120) + '" cy="' + cy + '" r="7" fill="' + c2 + '" stroke="#fff" stroke-width="1.5"/>';
+    // 궤도: 보랏빛 우주 + 점선 링 두른 검은 원 안의 색색 ORBIT + 빛나는 오브 행렬 + 큐브 (ORBIT, 바닥 없음)
+    orbit: function (c1, c2, rng) {
+      let s = "";
+
+      // 빛나는 오브 한 알
+      function orb(cx, cy, r, c) {
+        return '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + (r * 1.9).toFixed(1) +
+          '" fill="' + c + '" opacity="0.18"/>' +
+          '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + r.toFixed(1) +
+          '" fill="' + c + '" stroke="#fff" stroke-width="1.4" opacity="0.95"/>' +
+          '<circle cx="' + (cx - r * 0.3).toFixed(1) + '" cy="' + (cy - r * 0.3).toFixed(1) +
+          '" r="' + (r * 0.3).toFixed(1) + '" fill="#fff" opacity="0.55"/>';
+      }
+      // 직선을 따라 늘어선 오브 행렬
+      function orbLine(x0, y0, x1, y1, n, r, c) {
+        let g = "";
+        for (let i = 0; i < n; i++) {
+          const t = i / (n - 1);
+          g += orb(x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, r, c);
+        }
+        return g;
+      }
+
+      // 1) 별
+      for (let i = 0; i < 34; i++) {
+        const x = Math.floor(rng() * 400);
+        const y = Math.floor(rng() * 180);
+        const r = (0.5 + rng() * 1.6).toFixed(1);
+        s += '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="#fff" opacity="' + (0.3 + rng() * 0.5).toFixed(2) + '"/>';
+      }
+
+      // 2) 고리 행성 (좌상단)
+      s += '<g transform="rotate(-18 70 46)">';
+      s += '<circle cx="70" cy="46" r="22" fill="#b59b3d"/>';
+      s += '<circle cx="62" cy="38" r="6" fill="#fff" opacity="0.35"/>';
+      s += '<ellipse cx="70" cy="46" rx="36" ry="11" fill="none" stroke="#d9c87a" stroke-width="3" opacity="0.8"/>';
+      s += "</g>";
+
+      // 3) 오브 행렬 (시안 위쪽 호 · 그린 아래 상승 · 레드 우측)
+      s += orbLine(48, 64, 188, 44, 6, 9, "#42e8ff");
+      s += orbLine(238, 172, 250, 118, 5, 9, "#46e06a");
+      s += orbLine(384, 116, 396, 176, 4, 8, "#ff4d3d");
+
+      // 4) 점선 링을 두른 검은 원 (우측 중앙)
+      const ox = 300, oy = 82;
+      s += '<circle cx="' + ox + '" cy="' + oy + '" r="58" fill="#08040f"/>';
+      s += '<circle cx="' + ox + '" cy="' + oy + '" r="64" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="10 8" opacity="0.92"/>';
+      s += '<circle cx="' + ox + '" cy="' + oy + '" r="58" fill="none" stroke="#5b7bff" stroke-width="1.4" opacity="0.5"/>';
+
+      // 5) 색색의 ORBIT 글자 (검은 원 안)
+      const letters = [
+        ["O", 261, "#ffe14d"], ["R", 285, "#42e8ff"], ["B", 308, "#ff7ad0"],
+        ["I", 324, "#ff4d3d"], ["T", 337, "#5dff7a"],
+      ];
+      for (let i = 0; i < letters.length; i++) {
+        s += '<text x="' + letters[i][1] + '" y="94" text-anchor="middle" ' +
+          'font-family="&apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="30" ' +
+          'fill="' + letters[i][2] + '" stroke="#fff" stroke-width="1" paint-order="stroke">' + letters[i][0] + "</text>";
+      }
+
+      // 6) 큐브 플레이어 (좌측 전경, 살짝 기울임)
+      s += '<g transform="rotate(-10 96 102)">';
+      s += '<rect x="60" y="68" width="72" height="72" rx="9" fill="none" stroke="#ffffff" stroke-width="3"/>';
+      s += '<rect x="64" y="72" width="64" height="64" rx="7" fill="' + c1 + '" stroke="#7fe3ff" stroke-width="4"/>';
+      s += '<rect x="90" y="96" width="20" height="20" rx="3" fill="#0a1130"/>';
+      s += '<rect x="95" y="101" width="9" height="9" rx="1.5" fill="#fff" opacity="0.85"/>';
+      s += "</g>";
+
       return s;
     },
     // 사운드: 이퀄라이저 막대 (Silent Clubstep)

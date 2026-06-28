@@ -577,7 +577,7 @@ const LEVELS = [
     category: "혁신",
     tag: "오브로 이루어진 우주",
     motif: "orbit",
-    colors: ["#4d7bff", "#0a0a2e"],
+    colors: ["#2f7bff", "#1a0a3a"],
     video: "QKcv8DkNPd0",
     summary: "모든 입력이 '오브'인 깊은 우주 테마 — 독특한 플레이로 신화(Mythic) 등급을 받은 레벨.",
     history:
