@@ -646,8 +646,8 @@ const LEVELS = [
     peakRank: "예정 1위 (미공개)",
     category: "업커밍",
     tag: "전설의 미공개작",
-    motif: "blood",
-    colors: ["#c0152e", "#0c0306"],
+    motif: "orochi",
+    colors: ["#ff5a1e", "#1a0400"],
     video: "VF67v-vHn3s",
     summary: "10년 가까이 '나올 듯 나오지 않는' 전설의 미공개 슈퍼 익스트림 데몬.",
     history:

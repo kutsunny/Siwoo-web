@@ -473,6 +473,84 @@
 
       return s;
     },
+    // 오로치: 화염 적색 배경 + 폭발 별빛 + 우측 흑룡 머리(빛나는 눈·이빨) + 오컬트 룬 + 가로 광선 + OROCHI 문구
+    orochi: function (c1, c2, rng) {
+      let s = "";
+
+      // 폭발형 가시 별
+      function burst(cx, cy, r, n, color, op) {
+        let pts = "";
+        for (let k = 0; k < n * 2; k++) {
+          const a = (k / (n * 2)) * Math.PI * 2;
+          const rr = k % 2 === 0 ? r : r * 0.45;
+          pts += (cx + Math.cos(a) * rr).toFixed(1) + "," + (cy + Math.sin(a) * rr).toFixed(1) + " ";
+        }
+        return '<polygon points="' + pts.trim() + '" fill="' + color + '" opacity="' + op + '"/>';
+      }
+      // 붉은 오컬트 룬 원
+      function sigil(cx, cy, r) {
+        let g = '<g stroke="#ff3b2e" fill="none" stroke-width="1.2" opacity="0.45">';
+        g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '"/>';
+        g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.6).toFixed(1) + '"/>';
+        for (let k = 0; k < 6; k++) {
+          const a = (k / 6) * Math.PI * 2;
+          g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + Math.cos(a) * r).toFixed(1) +
+            '" y2="' + (cy + Math.sin(a) * r).toFixed(1) + '"/>';
+        }
+        return g + "</g>";
+      }
+
+      // 1) 화염 글로우
+      s += '<circle cx="120" cy="84" r="170" fill="' + c1 + '" opacity="0.16"/>';
+      s += '<circle cx="60" cy="120" r="95" fill="#ff9a3d" opacity="0.1"/>';
+
+      // 2) 폭발 별빛 (어두운 적색 + 밝은 주황)
+      for (let i = 0; i < 11; i++) {
+        const bx = Math.floor(rng() * 300);
+        const by = Math.floor(rng() * 180);
+        const br = 9 + rng() * 22;
+        s += burst(bx, by, br, 10, "#8e1208", 0.5);
+      }
+      s += burst(74, 30, 20, 12, c1, 0.4) + burst(180, 150, 16, 12, c1, 0.35);
+
+      // 3) 오컬트 룬 (우측, 흑룡 뒤)
+      s += sigil(352, 58, 34) + sigil(330, 132, 22);
+
+      // 4) 가로 광선 빔 + 플레이어
+      s += '<rect x="0" y="82" width="400" height="14" fill="#ffd24a" opacity="0.22"/>';
+      s += '<rect x="0" y="87" width="400" height="3" fill="#fff" opacity="0.85"/>';
+      s += '<rect x="40" y="80" width="12" height="12" rx="3" fill="#a35cff" stroke="#fff" stroke-width="1.5"/>';
+
+      // 5) 오로치(흑룡) 머리 — 우측
+      s += '<path d="M 400 0 L 400 96 C 360 86 322 76 300 70 C 282 65 264 60 252 56 C 268 40 300 24 342 14 C 366 9 400 6 400 0 Z" fill="#0a0204"/>';
+      s += '<path d="M 400 122 L 400 180 L 296 180 C 286 160 280 140 292 126 C 304 114 326 112 346 114 C 366 116 390 120 400 122 Z" fill="#0a0204"/>';
+      s += '<polygon points="356,16 372,-8 380,18" fill="#0a0204"/>';
+      s += '<polygon points="392,10 408,-12 414,12" fill="#0a0204"/>';
+      // 윗니 (아래로)
+      for (let i = 0; i < 7; i++) {
+        const tx = 268 + i * 19;
+        s += '<polygon points="' + tx + ",68 " + (tx + 12) + ",68 " + (tx + 6) + ',84" fill="#f2eef0"/>';
+      }
+      // 아랫니 (위로)
+      for (let i = 0; i < 7; i++) {
+        const tx = 300 + i * 14;
+        s += '<polygon points="' + tx + ",120 " + (tx + 10) + ",120 " + (tx + 5) + ',106" fill="#f2eef0"/>';
+      }
+      // 빛나는 눈
+      s += '<circle cx="338" cy="58" r="20" fill="' + c1 + '" opacity="0.3"/>';
+      s += '<circle cx="338" cy="58" r="9" fill="#ffd24a"/>';
+      s += '<circle cx="338" cy="58" r="4" fill="#fff"/>';
+
+      // 6) OROCHI 문구 (좌하, 용암빛)
+      s += '<text x="140" y="160" text-anchor="middle" textLength="252" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="44" ' +
+        'fill="' + c1 + '" opacity="0.3">OROCHI</text>';
+      s += '<text x="140" y="158" text-anchor="middle" textLength="246" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="40" ' +
+        'fill="#ffc24a" stroke="#1a0400" stroke-width="2.2" paint-order="stroke">OROCHI</text>';
+
+      return s;
+    },
     // 동심원: Nine Circles류 상징
     circles: function (c1, c2) {
       let s = '';
