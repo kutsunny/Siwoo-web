@@ -529,6 +529,7 @@ const LEVELS = [
     tag: "초장편 톱급",
     motif: "fire",
     colors: ["#ff7a18", "#3a0a00"],
+    video: "x4Io4zkWVRw",
     summary: "6분 46초에 달하는 초장편 — 톱 1급 난이도로 화제가 된 대형 콜라브.",
     history:
       "Flamewall는 Narwall가 호스트·공개한(이전 호스트 RicoLP) 대형 콜라브로, Cuatrocientos가 2025년 9월 21일 " +
