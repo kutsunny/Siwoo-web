@@ -556,7 +556,7 @@ const LEVELS = [
     peakRank: "역대급 나인서클즈",
     category: ["미평가", "불가능 레벨", "역사"],
     tag: "10년 만의 베리파이",
-    motif: "circles",
+    motif: "uskc",
     colors: ["#ff2e4d", "#120006"],
     summary: "10년 가까이 '불가능'으로 남아 있던 1.9 원본 나인 서클즈가 2025년 마침내 베리파이됐다.",
     history:

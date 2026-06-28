@@ -424,6 +424,55 @@
 
       return s;
     },
+    // USKC: 나인 서클즈 거대 동심원 + 좁은 통로를 통과하는 초고속 미니 웨이브 연타(지그재그)
+    uskc: function (c1, c2, rng) {
+      let s = "";
+
+      // 좁은 간격을 오가는 지그재그(웨이브 궤적) 한 줄
+      function zig(yTop, yBot, startUp, stroke, w, op) {
+        let pts = "", zx = -6, up = startUp;
+        while (zx <= 406) {
+          pts += zx + "," + (up ? yTop : yBot) + " ";
+          zx += 13; up = !up;
+        }
+        return '<polyline points="' + pts.trim() + '" fill="none" stroke="' + stroke +
+          '" stroke-width="' + w + '" opacity="' + op + '"/>';
+      }
+
+      // 1) 중앙 글로우 + 거대 동심원 (나인 서클즈 상징)
+      s += '<circle cx="200" cy="88" r="74" fill="' + c1 + '" opacity="0.06"/>';
+      for (let r = 96; r >= 14; r -= 13) {
+        s += '<circle cx="200" cy="88" r="' + r + '" fill="none" stroke="' + c1 +
+          '" stroke-width="2.4" opacity="' + (0.1 + ((96 - r) / 96) * 0.18).toFixed(2) + '"/>';
+      }
+
+      // 2) 위/아래 어두운 벽 (좁은 통로 형성)
+      s += '<rect x="0" y="0" width="400" height="56" fill="' + c2 + '" opacity="0.6"/>';
+      s += '<rect x="0" y="120" width="400" height="60" fill="' + c2 + '" opacity="0.6"/>';
+
+      // 3) 통로 안쪽으로 향한 가시 열 (위·아래)
+      let x = 8;
+      while (x < 392) {
+        const h = 9 + rng() * 8;
+        s += '<polygon points="' + x + ",56 " + (x + 12) + ",56 " + (x + 6) + "," + (56 + h).toFixed(1) +
+          '" fill="' + c1 + '" opacity="0.7"/>';
+        s += '<polygon points="' + x + ",120 " + (x + 12) + ",120 " + (x + 6) + "," + (120 - h).toFixed(1) +
+          '" fill="' + c1 + '" opacity="0.7"/>';
+        x += 18;
+      }
+
+      // 4) 초고속 미니 웨이브 연타 (좁은 지그재그) — 글로우→본선→하이라이트 + 듀얼
+      s += zig(70, 106, true, c1, 8, 0.25);
+      s += zig(70, 106, true, "#ff3b5c", 3, 0.95);
+      s += zig(70, 106, true, "#ffd0d8", 1.2, 0.9);
+      s += zig(80, 96, false, "#ff7a90", 2.2, 0.6);
+
+      // 5) 웨이브 머리 (선두 삼각형, 발광)
+      s += '<polygon points="384,82 384,94 396,88" fill="#fff"/>';
+      s += '<circle cx="388" cy="88" r="9" fill="#fff" opacity="0.25"/>';
+
+      return s;
+    },
     // 동심원: Nine Circles류 상징
     circles: function (c1, c2) {
       let s = '';
