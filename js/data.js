@@ -614,6 +614,28 @@ const LEVELS = [
       "데몬리스트 최상위권은 늘 빠르게 교체되는 만큼, 순위와 위상은 이후에도 계속 변동될 수 있습니다.",
   },
   {
+    id: "orochi-old",
+    name: "Old Orochi",
+    creator: "Platnuu (원본, 2017)",
+    verifier: "미공개 (정식 베리파이 없음)",
+    year: 2017,
+    peakRank: "구(舊) 버전 · 미공개",
+    category: "역사",
+    tag: "리워크 이전 원본",
+    motif: "blood",
+    colors: ["#8e1020", "#0a0204"],
+    summary: "Knobbelboy가 손대기 전, Platnuu가 만든 2017년 원본 Orochi.",
+    history:
+      "'Old Orochi'는 Knobbelboy가 인수·리워크하기 전, Platnuu가 2017년 1월 무렵 만들던 원본 버전을 가리킵니다. " +
+      "현재 알려진 새 Orochi와는 디자인과 게임플레이가 상당히 달랐고, 당시로서는 극악의 슈퍼 익스트림 데몬으로 " +
+      "여겨졌습니다.\n\n" +
+      "Platnuu가 프로젝트에서 손을 떼며 레벨을 Knobbelboy에게 넘긴 뒤, Knobbelboy 팀이 난이도를 조정(너프)하고 " +
+      "전반을 재작업하면서 지금의 Orochi로 바뀌었습니다. 그 결과 '원본 그대로의 옛 버전'은 정식으로 공개·베리파이된 " +
+      "적이 없습니다.\n\n" +
+      "그럼에도 옛 버전은 카피/유출 형태로 플레이어들 사이를 돌며 도전 대상이 되어, '언너프드 올드 Orochi'로 일부 " +
+      "구간 기록(예: 40% 부근)이 회자되기도 합니다. 리워크된 새 Orochi(업커밍)와는 별개의 레벨로 구분됩니다.",
+  },
+  {
     id: "orochi",
     name: "Orochi",
     creator: "Platnuu 원작 → Knobbelboy (인수·확장)",
