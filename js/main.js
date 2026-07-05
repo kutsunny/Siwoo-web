@@ -920,6 +920,115 @@
 
       return s;
     },
+    // Firework: 흑백 글리치 + 발광 기어 + 흰 불꽃 스파크 + 크로매틱 FIREWORK 글자
+    firework: function (c1, c2, rng) {
+      let s = "";
+      const white = "#eef0f5", grey = "#8b90a0", red = "#ff2e3e", cyan = "#38e6ff";
+
+      // 1) 글리치 스캔라인
+      s += '<g stroke="' + grey + '" stroke-width="1" opacity="0.10">';
+      for (let y = 6; y < 180; y += 9) s += '<line x1="0" y1="' + y + '" x2="400" y2="' + y + '"/>';
+      s += "</g>";
+
+      // 2) 발광 테두리 기어(톱니바퀴)
+      function gear(cx, cy, r, teeth) {
+        let pts = "";
+        for (let k = 0; k < teeth * 2; k++) {
+          const a = (k / (teeth * 2)) * Math.PI * 2;
+          const rr = k % 2 ? r : r * 0.78;
+          pts += (cx + Math.cos(a) * rr).toFixed(1) + "," + (cy + Math.sin(a) * rr).toFixed(1) + " ";
+        }
+        return '<g opacity="0.9"><polygon points="' + pts + '" fill="#12131a" stroke="' + white + '" stroke-width="1.6"/>' +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.42).toFixed(1) + '" fill="none" stroke="' + grey + '" stroke-width="2"/>' +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.14).toFixed(1) + '" fill="' + grey + '"/></g>';
+      }
+      s += gear(58, 138, 30, 10);
+      s += gear(346, 52, 22, 9);
+      s += gear(362, 150, 16, 8);
+
+      // 3) 흰 불꽃 스파크 (프랙탈 가지) — 아이러니한 '불꽃'
+      function spark(cx, cy, r, n) {
+        let g = '<g stroke="' + white + '" stroke-width="1.3" opacity="0.85" fill="none">';
+        for (let k = 0; k < n; k++) {
+          const a = (k / n) * Math.PI * 2 + 0.2;
+          const ex = cx + Math.cos(a) * r, ey = cy + Math.sin(a) * r;
+          const mx = cx + Math.cos(a) * r * 0.6, my = cy + Math.sin(a) * r * 0.6;
+          g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '"/>';
+          g += '<line x1="' + mx.toFixed(1) + '" y1="' + my.toFixed(1) + '" x2="' + (mx + Math.cos(a + 0.5) * r * 0.28).toFixed(1) + '" y2="' + (my + Math.sin(a + 0.5) * r * 0.28).toFixed(1) + '"/>';
+          g += '<line x1="' + mx.toFixed(1) + '" y1="' + my.toFixed(1) + '" x2="' + (mx + Math.cos(a - 0.5) * r * 0.28).toFixed(1) + '" y2="' + (my + Math.sin(a - 0.5) * r * 0.28).toFixed(1) + '"/>';
+          g += '<circle cx="' + ex.toFixed(1) + '" cy="' + ey.toFixed(1) + '" r="1.6" fill="' + white + '"/>';
+        }
+        g += '<circle cx="' + cx + '" cy="' + cy + '" r="3" fill="' + white + '"/></g>';
+        return g;
+      }
+      s += spark(112, 50, 36, 9);
+      s += spark(300, 118, 26, 8);
+
+      // 4) 흰 삼각 스파이크 (크로매틱 분리) — 바닥 좌측
+      function spike(x, y, w, h) {
+        const p = x + "," + y + " " + (x + w) + "," + y + " " + (x + w / 2) + "," + (y - h);
+        return '<polygon points="' + p + '" fill="' + red + '" opacity="0.5" transform="translate(-2 0)"/>' +
+          '<polygon points="' + p + '" fill="' + cyan + '" opacity="0.5" transform="translate(2 0)"/>' +
+          '<polygon points="' + p + '" fill="' + white + '"/>';
+      }
+      let sx = 18;
+      while (sx < 168) { s += spike(sx, 168, 18, 22); sx += 26; }
+
+      // 5) 크로매틱 글리치 FIREWORK 글자 (빨강·시안 오프셋 + 흰색)
+      function fw(dx, dy, fill, op) {
+        return '<text x="' + (200 + dx) + '" y="' + (100 + dy) + '" text-anchor="middle" ' +
+          'font-family="&apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="38" ' +
+          'fill="' + fill + '" opacity="' + op + '" letter-spacing="1">FIREWORK</text>';
+      }
+      s += fw(-3, 1, red, 0.7);
+      s += fw(3, -1, cyan, 0.7);
+      s += fw(0, 0, white, 1);
+
+      return s;
+    },
+    // Every End: 파란 1.0 복고 블록 타일 + 패럴랙스 '고스트' 실루엣 + 큐브·가시
+    everyend: function (c1, c2, rng) {
+      let s = "";
+      const lite = "#4d90ff", mid = "#2f6fe0", deep = "#1b4bb0", ghost = "#12306b", edge = "#0c1f4a";
+
+      // 1) 배경 고스트 블록 (앞으로 나올 블록의 실루엣) — 흐릿하게
+      const gb = [[16, 14, 118, 74], [296, 10, 96, 62], [244, 92, 140, 74], [30, 104, 86, 66], [150, 34, 92, 84]];
+      for (let i = 0; i < gb.length; i++) {
+        const b = gb[i];
+        s += '<rect x="' + b[0] + '" y="' + b[1] + '" width="' + b[2] + '" height="' + b[3] +
+          '" rx="2" fill="' + ghost + '" opacity="0.5" stroke="' + edge + '" stroke-width="2"/>';
+      }
+
+      // 2) 전경 타일 블록 (밝은 파랑 + 얇은 외곽선 + 상단 하이라이트) = 고전 1.0 스타일
+      const fb = [[38, 46, 88, 62, mid], [150, 66, 98, 70, lite], [262, 118, 112, 56, mid], [8, 118, 74, 58, lite], [300, 42, 72, 52, deep]];
+      for (let i = 0; i < fb.length; i++) {
+        const b = fb[i];
+        s += '<rect x="' + b[0] + '" y="' + b[1] + '" width="' + b[2] + '" height="' + b[3] +
+          '" rx="2" fill="' + b[4] + '" stroke="' + edge + '" stroke-width="2"/>';
+        s += '<line x1="' + (b[0] + 3) + '" y1="' + (b[1] + 3) + '" x2="' + (b[0] + b[2] - 3) + '" y2="' + (b[1] + 3) +
+          '" stroke="#a9ccff" stroke-width="1.5" opacity="0.6"/>';
+      }
+
+      // 3) 바닥 + 고전 삼각 가시 (파랑 · 흰 외곽)
+      s += '<rect x="0" y="150" width="400" height="30" fill="' + deep + '" opacity="0.6"/>';
+      s += '<line x1="0" y1="150" x2="400" y2="150" stroke="' + lite + '" stroke-width="2"/>';
+      let x = 20;
+      while (x < 386) {
+        s += '<polygon points="' + x + ',150 ' + (x + 16) + ',150 ' + (x + 8) + ',130" fill="' + mid + '" stroke="#cfe0ff" stroke-width="1.5"/>';
+        x += 40;
+      }
+
+      // 4) 앞에 나올 가시의 '고스트' 실루엣 (패럴랙스 예고)
+      s += '<polygon points="212,150 228,150 220,124" fill="' + ghost + '" opacity="0.55" stroke="' + edge + '" stroke-width="1.5"/>';
+
+      // 5) 큐브 플레이어
+      s += '<g transform="rotate(-8 90 121)">';
+      s += '<rect x="74" y="106" width="30" height="30" rx="4" fill="' + lite + '" stroke="#fff" stroke-width="2.5"/>';
+      s += '<rect x="82" y="114" width="14" height="14" rx="2" fill="' + edge + '"/>';
+      s += "</g>";
+
+      return s;
+    },
   };
 
   function levelArt(level) {
