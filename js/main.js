@@ -775,6 +775,151 @@
       }
       return s;
     },
+    // KOCMOC: 보라·분홍 네온 부족풍 우주 + 노란 번개 웨이브 + КОСМОС 글자
+    kocmoc: function (c1, c2, rng) {
+      let s = "";
+      const magenta = "#ff2e97", pink = "#ff6ec7", violet = "#a24bff", deep = "#6a2bd6", gold = "#ffe14d";
+
+      // 1) 별밭
+      for (let i = 0; i < 26; i++) {
+        const x = Math.floor(rng() * 400);
+        const y = Math.floor(rng() * 150);
+        const r = (0.5 + rng() * 1.5).toFixed(1);
+        const c = rng() < 0.3 ? pink : "#ffffff";
+        s += '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + c + '" opacity="' + (0.3 + rng() * 0.55).toFixed(2) + '"/>';
+      }
+
+      // 2) 보라·분홍 성운 글로우
+      s += '<circle cx="150" cy="70" r="120" fill="' + violet + '" opacity="0.10"/>';
+      s += '<circle cx="300" cy="60" r="90" fill="' + magenta + '" opacity="0.09"/>';
+
+      // 3) 부족풍 네온 삼각 신전 (좌상 / 우상)
+      function temple(cx, cy, w, h, col) {
+        let g = '<g fill="none" stroke="' + col + '" stroke-width="2.4" opacity="0.9">';
+        for (let k = 0; k < 3; k++) {
+          const ww = w * (1 - k * 0.3);
+          const hh = h * (1 - k * 0.28);
+          g += '<polygon points="' + (cx - ww / 2).toFixed(1) + ',' + cy + ' ' +
+            (cx + ww / 2).toFixed(1) + ',' + cy + ' ' + cx + ',' + (cy - hh).toFixed(1) + '"/>';
+        }
+        g += "</g>";
+        g += '<polygon points="' + cx + ',' + (cy - h * 0.35).toFixed(1) + ' ' + (cx + 8) + ',' +
+          (cy - h * 0.2).toFixed(1) + ' ' + cx + ',' + (cy - h * 0.05).toFixed(1) + ' ' + (cx - 8) + ',' +
+          (cy - h * 0.2).toFixed(1) + '" fill="' + pink + '" opacity="0.85"/>';
+        return g;
+      }
+      s += temple(78, 92, 130, 88, deep);
+      s += temple(322, 84, 120, 80, deep);
+
+      // 4) 분홍 보석 다이아 + 별빛 스파이크
+      function gem(cx, cy, r) {
+        let g = '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 1.8).toFixed(1) + '" fill="' + magenta + '" opacity="0.16"/>';
+        for (let k = 0; k < 8; k++) {
+          const a = (k / 8) * Math.PI * 2;
+          const x1 = cx + Math.cos(a) * r * 1.05, y1 = cy + Math.sin(a) * r * 1.05;
+          const x2 = cx + Math.cos(a) * r * 1.9, y2 = cy + Math.sin(a) * r * 1.9;
+          g += '<line x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) +
+            '" y2="' + y2.toFixed(1) + '" stroke="' + violet + '" stroke-width="2"/>';
+        }
+        g += '<polygon points="' + cx + ',' + (cy - r) + ' ' + (cx + r * 0.7).toFixed(1) + ',' + cy + ' ' +
+          cx + ',' + (cy + r) + ' ' + (cx - r * 0.7).toFixed(1) + ',' + cy + '" fill="' + pink + '" stroke="#fff" stroke-width="1.2"/>';
+        g += '<polygon points="' + cx + ',' + (cy - r * 0.5).toFixed(1) + ' ' + (cx + r * 0.35).toFixed(1) + ',' + cy + ' ' +
+          cx + ',' + (cy + r * 0.5).toFixed(1) + ' ' + (cx - r * 0.35).toFixed(1) + ',' + cy + '" fill="#fff" opacity="0.7"/>';
+        return g;
+      }
+      s += gem(210, 48, 13);
+      s += gem(268, 92, 10);
+      s += gem(150, 120, 9);
+
+      // 5) 노란 번개 웨이브 궤적 (좌중단) — 글로우 + 본선
+      const wavePts = "8,150 40,110 60,140 92,100 112,132 150,96";
+      s += '<polyline points="' + wavePts + '" fill="none" stroke="' + gold + '" stroke-width="6" opacity="0.25" stroke-linejoin="round"/>';
+      s += '<polyline points="' + wavePts + '" fill="none" stroke="' + gold + '" stroke-width="2.6" stroke-linejoin="round"/>';
+      s += '<polygon points="150,96 139,90 139,102" fill="' + gold + '"/>';
+
+      // 6) КОСМОС 글자 (분홍 발광 · 흰 윤곽)
+      s += '<text x="200" y="168" text-anchor="middle" font-family="&apos;Arial Black&apos;, sans-serif" ' +
+        'font-weight="900" font-size="38" fill="' + magenta + '" stroke="#fff" stroke-width="1.2" ' +
+        'paint-order="stroke" opacity="0.96">КОСМОС</text>';
+
+      return s;
+    },
+    // BOOBAWAMBA: 매트릭스 초록 코드레인 + 스캔라인 + 손전등 로봇 + 초록 글자
+    boobawamba: function (c1, c2, rng) {
+      let s = "";
+      const green = "#4fff86", dim = "#2f7d4a";
+
+      // 1) 좌측 붉은 잔광 + 초록 안개 글로우
+      s += '<circle cx="40" cy="90" r="70" fill="#ff3b2f" opacity="0.06"/>';
+      s += '<circle cx="210" cy="70" r="150" fill="' + green + '" opacity="0.07"/>';
+
+      // 2) 매트릭스 디지털 레인 (희미한 초록 숫자)
+      s += '<g fill="' + green + '" font-family="monospace" font-size="9">';
+      for (let col = 0; col < 16; col++) {
+        const x = 12 + col * 25;
+        const rows = 3 + Math.floor(rng() * 5);
+        const y0 = Math.floor(rng() * 40);
+        for (let r = 0; r < rows; r++) {
+          const d = Math.floor(rng() * 10);
+          const op = (0.15 + rng() * 0.5).toFixed(2);
+          s += '<text x="' + x + '" y="' + (y0 + r * 15) + '" opacity="' + op + '">' + d + "</text>";
+        }
+      }
+      s += "</g>";
+
+      // 3) CRT 스캔라인
+      s += '<g stroke="#000000" stroke-width="1" opacity="0.28">';
+      for (let y = 4; y < 180; y += 5) {
+        s += '<line x1="0" y1="' + y + '" x2="400" y2="' + y + '"/>';
+      }
+      s += "</g>";
+
+      // 4) 바닥 + 어두운 톱니/가시 실루엣
+      s += '<rect x="0" y="158" width="400" height="22" fill="#050a06" opacity="0.85"/>';
+      function saw(cx, cy, r) {
+        let pts = "";
+        const teeth = 10;
+        for (let k = 0; k < teeth * 2; k++) {
+          const a = (k / (teeth * 2)) * Math.PI * 2;
+          const rr = k % 2 ? r : r * 0.7;
+          pts += (cx + Math.cos(a) * rr).toFixed(1) + "," + (cy + Math.sin(a) * rr).toFixed(1) + " ";
+        }
+        return '<g fill="#0a140c" stroke="' + dim + '" stroke-width="1" opacity="0.8"><polygon points="' + pts +
+          '"/><circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.35).toFixed(1) + '" fill="#050a06"/></g>';
+      }
+      s += saw(70, 170, 20);
+      s += '<g fill="#0a140c" stroke="' + dim + '" stroke-width="0.8" opacity="0.75">';
+      let sx = 250;
+      while (sx < 400) {
+        s += '<polygon points="' + sx + ',158 ' + (sx + 14) + ',158 ' + (sx + 7) + ',142"/>';
+        sx += 18;
+      }
+      s += "</g>";
+
+      // 5) 초록 로봇 + 손전등 빔 (중앙 하단)
+      const rx = 200, ry = 138;
+      s += '<polygon points="' + (rx + 12) + ',' + ry + ' 330,110 330,168" fill="' + green + '" opacity="0.13"/>';
+      s += '<polygon points="' + (rx + 12) + ',' + ry + ' 300,120 300,158" fill="' + green + '" opacity="0.12"/>';
+      s += '<g stroke="' + green + '" stroke-width="2" fill="#0a1a0f">';
+      s += '<rect x="' + (rx - 16) + '" y="' + (ry - 14) + '" width="30" height="22" rx="3"/>';
+      s += '<polyline points="' + (rx - 12) + ',' + (ry + 8) + ' ' + (rx - 6) + ',' + (ry + 18) + ' ' +
+        (rx + 4) + ',' + (ry + 18) + ' ' + (rx + 10) + ',' + (ry + 8) + '" fill="none"/>';
+      s += "</g>";
+      s += '<g fill="' + green + '">';
+      s += '<rect x="' + (rx - 10) + '" y="' + (ry - 9) + '" width="5" height="5"/>';
+      s += '<rect x="' + (rx - 1) + '" y="' + (ry - 9) + '" width="5" height="5"/>';
+      s += '<polygon points="' + (rx - 10) + ',' + (ry + 1) + ' ' + (rx + 8) + ',' + (ry + 1) + ' ' +
+        (rx + 5) + ',' + (ry + 5) + ' ' + (rx + 2) + ',' + (ry + 1) + ' ' + (rx - 1) + ',' + (ry + 5) + ' ' +
+        (rx - 4) + ',' + (ry + 1) + '"/>';
+      s += "</g>";
+
+      // 6) BOOBAWAMBA 글자 (초록 발광 · 검은 채움)
+      s += '<text x="200" y="84" text-anchor="middle" font-family="&apos;Arial Black&apos;, sans-serif" ' +
+        'font-weight="900" font-size="30" fill="#06120a" stroke="' + green + '" stroke-width="1.6" ' +
+        'paint-order="stroke" opacity="0.97">BOOBAWAMBA</text>';
+
+      return s;
+    },
   };
 
   function levelArt(level) {
