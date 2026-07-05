@@ -211,6 +211,7 @@ const LEVELS = [
     tag: "핵 베리파이 스캔들",
     motif: "fire",
     colors: ["#ff4d1f", "#1a0300"],
+    video: "IZk2tovhm8I",
     summary: "핵 베리파이 스캔들로 얼룩졌지만 한때 구 데몬리스트 1위에 오른 지옥 테마 콜라브.",
     history:
       "Athanatos는 그리스어로 '불멸·죽지 않는'을 뜻하는 이름의 지옥 테마 2.0 콜라브입니다. Exenity가 공개했고 " +
@@ -305,6 +306,7 @@ const LEVELS = [
     tag: "핏빛 지옥 행성",
     motif: "wave",
     colors: ["#ff2140", "#1a0308"],
+    video: "euMInLjyG6k",
     summary: "핏빛 붉은 지옥을 테마로 한 대형 콜라브 — 2018년 데몬리스트 2위에 오른 레벨.",
     history:
       "Crimson Planet은 TrueOmega가 호스트한 대형 콜라브로, 2018년 5월 19일 Wooshi(Wooshi999)가 라이브 방송에서 " +
@@ -474,6 +476,7 @@ const LEVELS = [
     tag: "1위 등극",
     motif: "spikes",
     colors: ["#ff2ea6", "#0a0010"],
+    video: "ejJkpqcMMCY",
     summary: "2022년 잠시 데몬리스트 1위에 오른, 어둠과 마젠타 글로우의 대형 콜라브.",
     history:
       "Abyss of Darkness(줄여서 AoD)는 Exen이 호스트하고 CDMusic이 데코레이션을 다시 손본 대형 콜라브입니다. " +
@@ -543,6 +546,7 @@ const LEVELS = [
     tag: "두 번 베리파이된 우주",
     motif: "kocmoc",
     colors: ["#a24bff", "#0a0522"],
+    video: "9EQlcZi88Nw",
     summary: "우주(Космос)를 테마로 한 Cherry Team 대형 콜라브 — 베리파이가 두 번 이뤄진 사연 많은 레벨.",
     history:
       "KOCMOC는 라틴 알파벳을 키릴 문자 'КОСМОС'(코스모스 = 우주)처럼 보이게 스타일링한 이름의 대형 콜라브입니다. " +
@@ -600,6 +604,7 @@ const LEVELS = [
     tag: "최악의 메모리 데몬",
     motif: "boobawamba",
     colors: ["#3ecf6a", "#08120b"],
+    video: "20fYiqLAo_E",
     summary: "시야를 가려 앞을 못 보게 만드는, '게임 최강의 메모리 데몬'으로 불린 녹색 안개 레벨.",
     history:
       "BOOBAWAMBA는 거대수(구골로지)의 이름에서 따온 익스트림 데몬으로, akunakun이 공개하고 ygg24, TheLetterV가 " +
