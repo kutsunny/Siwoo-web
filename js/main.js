@@ -920,69 +920,90 @@
 
       return s;
     },
-    // Firework: 흑백 글리치 + 발광 기어 + 흰 불꽃 스파크 + 크로매틱 FIREWORK 글자
+    // Firework: 흑백 글리치 + 기계 기어(지배적) + 흰 서리/불꽃 가지 + 크로매틱 FIREWORK 글자
     firework: function (c1, c2, rng) {
       let s = "";
-      const white = "#eef0f5", grey = "#8b90a0", red = "#ff2e3e", cyan = "#38e6ff";
+      const white = "#eef0f5", grey = "#9aa0b2", dark = "#14151c", red = "#ff2e3e", cyan = "#38e6ff";
 
-      // 1) 글리치 스캔라인
-      s += '<g stroke="' + grey + '" stroke-width="1" opacity="0.10">';
-      for (let y = 6; y < 180; y += 9) s += '<line x1="0" y1="' + y + '" x2="400" y2="' + y + '"/>';
+      // 1) 배경 글리치: 흐릿한 사각 실루엣 + 스캔라인 + 데이터모시 밝은 줄무늬
+      s += '<g fill="none" stroke="' + grey + '" stroke-width="1" opacity="0.12">';
+      s += '<rect x="18" y="16" width="72" height="50"/><rect x="248" y="118" width="92" height="48"/><rect x="116" y="128" width="62" height="42"/>';
+      s += "</g>";
+      s += '<g stroke="' + grey + '" stroke-width="1" opacity="0.08">';
+      for (let y = 8; y < 180; y += 7) s += '<line x1="0" y1="' + y + '" x2="400" y2="' + y + '"/>';
+      s += "</g>";
+      s += '<g fill="' + white + '" opacity="0.05">';
+      for (let i = 0; i < 5; i++) { const yy = 18 + Math.floor(rng() * 146); s += '<rect x="0" y="' + yy + '" width="400" height="' + (2 + Math.floor(rng() * 3)) + '"/>'; }
       s += "</g>";
 
-      // 2) 발광 테두리 기어(톱니바퀴)
-      function gear(cx, cy, r, teeth) {
+      // 2) 기계 기어 — 발광 테두리 + 스포크 + 허브 (썸네일의 지배적 요소)
+      function gear(cx, cy, r, teeth, spokes) {
         let pts = "";
         for (let k = 0; k < teeth * 2; k++) {
           const a = (k / (teeth * 2)) * Math.PI * 2;
-          const rr = k % 2 ? r : r * 0.78;
+          const rr = k % 2 ? r : r * 0.8;
           pts += (cx + Math.cos(a) * rr).toFixed(1) + "," + (cy + Math.sin(a) * rr).toFixed(1) + " ";
         }
-        return '<g opacity="0.9"><polygon points="' + pts + '" fill="#12131a" stroke="' + white + '" stroke-width="1.6"/>' +
-          '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.42).toFixed(1) + '" fill="none" stroke="' + grey + '" stroke-width="2"/>' +
-          '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.14).toFixed(1) + '" fill="' + grey + '"/></g>';
-      }
-      s += gear(58, 138, 30, 10);
-      s += gear(346, 52, 22, 9);
-      s += gear(362, 150, 16, 8);
-
-      // 3) 흰 불꽃 스파크 (프랙탈 가지) — 아이러니한 '불꽃'
-      function spark(cx, cy, r, n) {
-        let g = '<g stroke="' + white + '" stroke-width="1.3" opacity="0.85" fill="none">';
-        for (let k = 0; k < n; k++) {
-          const a = (k / n) * Math.PI * 2 + 0.2;
-          const ex = cx + Math.cos(a) * r, ey = cy + Math.sin(a) * r;
-          const mx = cx + Math.cos(a) * r * 0.6, my = cy + Math.sin(a) * r * 0.6;
-          g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '"/>';
-          g += '<line x1="' + mx.toFixed(1) + '" y1="' + my.toFixed(1) + '" x2="' + (mx + Math.cos(a + 0.5) * r * 0.28).toFixed(1) + '" y2="' + (my + Math.sin(a + 0.5) * r * 0.28).toFixed(1) + '"/>';
-          g += '<line x1="' + mx.toFixed(1) + '" y1="' + my.toFixed(1) + '" x2="' + (mx + Math.cos(a - 0.5) * r * 0.28).toFixed(1) + '" y2="' + (my + Math.sin(a - 0.5) * r * 0.28).toFixed(1) + '"/>';
-          g += '<circle cx="' + ex.toFixed(1) + '" cy="' + ey.toFixed(1) + '" r="1.6" fill="' + white + '"/>';
+        let g = '<g opacity="0.92"><polygon points="' + pts + '" fill="' + dark + '" stroke="' + white + '" stroke-width="1.6"/>';
+        g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.5).toFixed(1) + '" fill="none" stroke="' + grey + '" stroke-width="2"/>';
+        for (let k = 0; k < spokes; k++) {
+          const a = (k / spokes) * Math.PI * 2;
+          g += '<line x1="' + (cx + Math.cos(a) * r * 0.16).toFixed(1) + '" y1="' + (cy + Math.sin(a) * r * 0.16).toFixed(1) +
+            '" x2="' + (cx + Math.cos(a) * r * 0.5).toFixed(1) + '" y2="' + (cy + Math.sin(a) * r * 0.5).toFixed(1) + '" stroke="' + grey + '" stroke-width="2"/>';
         }
-        g += '<circle cx="' + cx + '" cy="' + cy + '" r="3" fill="' + white + '"/></g>';
+        g += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.16).toFixed(1) + '" fill="' + grey + '"/></g>';
         return g;
       }
-      s += spark(112, 50, 36, 9);
-      s += spark(300, 118, 26, 8);
+      s += gear(360, 150, 34, 12, 6);  // 우하단 큰 기어 (스포크)
+      s += gear(46, 46, 26, 10, 6);    // 좌상단 기어
+      s += gear(26, 118, 15, 8, 5);    // 좌중단 작은 기어
+      s += gear(158, 24, 13, 8, 0);    // 상단 중앙 작은 기어
 
-      // 4) 흰 삼각 스파이크 (크로매틱 분리) — 바닥 좌측
-      function spike(x, y, w, h) {
-        const p = x + "," + y + " " + (x + w) + "," + y + " " + (x + w / 2) + "," + (y - h);
-        return '<polygon points="' + p + '" fill="' + red + '" opacity="0.5" transform="translate(-2 0)"/>' +
-          '<polygon points="' + p + '" fill="' + cyan + '" opacity="0.5" transform="translate(2 0)"/>' +
-          '<polygon points="' + p + '" fill="' + white + '"/>';
+      // 3) 흰 서리/불꽃 가지 (재귀 프랙탈) — 아이러니한 '불꽃'
+      function frost(x, y, ang, len, depth, g) {
+        if (depth === 0) return g;
+        const ex = x + Math.cos(ang) * len, ey = y + Math.sin(ang) * len;
+        g += '<line x1="' + x.toFixed(1) + '" y1="' + y.toFixed(1) + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '"/>';
+        const mx = x + Math.cos(ang) * len * 0.5, my = y + Math.sin(ang) * len * 0.5;
+        g += '<line x1="' + mx.toFixed(1) + '" y1="' + my.toFixed(1) + '" x2="' + (mx + Math.cos(ang - 0.9) * len * 0.3).toFixed(1) + '" y2="' + (my + Math.sin(ang - 0.9) * len * 0.3).toFixed(1) + '"/>';
+        g += '<line x1="' + mx.toFixed(1) + '" y1="' + my.toFixed(1) + '" x2="' + (mx + Math.cos(ang + 0.9) * len * 0.3).toFixed(1) + '" y2="' + (my + Math.sin(ang + 0.9) * len * 0.3).toFixed(1) + '"/>';
+        g = frost(ex, ey, ang - 0.5, len * 0.62, depth - 1, g);
+        g = frost(ex, ey, ang + 0.5, len * 0.62, depth - 1, g);
+        return g;
       }
-      let sx = 18;
-      while (sx < 168) { s += spike(sx, 168, 18, 22); sx += 26; }
+      let fr = '<g stroke="' + white + '" stroke-width="1.2" opacity="0.7" fill="none">';
+      fr = frost(96, 66, -1.9, 26, 3, fr);
+      fr = frost(70, 150, -2.4, 22, 3, fr);
+      fr = frost(300, 58, -1.2, 22, 3, fr);
+      fr += "</g>";
+      s += fr;
 
-      // 5) 크로매틱 글리치 FIREWORK 글자 (빨강·시안 오프셋 + 흰색)
+      // 4) 흰 삼각 스파이크 (크로매틱 분리) — 우상단(아래로) + 좌하단(위로)
+      function chromaSpike(pts) {
+        return '<polygon points="' + pts + '" fill="' + red + '" opacity="0.55" transform="translate(-2.5 0)"/>' +
+          '<polygon points="' + pts + '" fill="' + cyan + '" opacity="0.55" transform="translate(2.5 0)"/>' +
+          '<polygon points="' + pts + '" fill="' + white + '"/>';
+      }
+      s += chromaSpike("330,8 372,8 351,40");
+      s += chromaSpike("28,172 60,172 44,146");
+      s += chromaSpike("64,172 92,172 78,150");
+
+      // 5) "Vernam & Cherry" 작은 스크립트
+      s += '<text x="200" y="66" text-anchor="middle" font-family="Georgia, &apos;Times New Roman&apos;, serif" ' +
+        'font-style="italic" font-size="15" fill="' + white + '" opacity="0.8">Vernam &amp; Cherry</text>';
+
+      // 6) 크로매틱 글리치 FIREWORK 글자 (빨강·시안 오프셋 + 흰색) + 글자 내부 스캔라인
       function fw(dx, dy, fill, op) {
-        return '<text x="' + (200 + dx) + '" y="' + (100 + dy) + '" text-anchor="middle" ' +
-          'font-family="&apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="38" ' +
+        return '<text x="' + (200 + dx) + '" y="' + (112 + dy) + '" text-anchor="middle" ' +
+          'font-family="&apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="42" ' +
           'fill="' + fill + '" opacity="' + op + '" letter-spacing="1">FIREWORK</text>';
       }
-      s += fw(-3, 1, red, 0.7);
-      s += fw(3, -1, cyan, 0.7);
+      s += fw(-3.5, 1, red, 0.75);
+      s += fw(3.5, -1, cyan, 0.75);
       s += fw(0, 0, white, 1);
+      s += '<g stroke="' + dark + '" stroke-width="1.4" opacity="0.32">';
+      for (let y = 86; y < 112; y += 4) s += '<line x1="82" y1="' + y + '" x2="318" y2="' + y + '"/>';
+      s += "</g>";
 
       return s;
     },
