@@ -274,6 +274,33 @@ const LEVELS = [
       "중 하나로 기록되었습니다.",
   },
   {
+    id: "blade-of-justice",
+    name: "Blade of Justice",
+    creator: "Manix648 호스트 · LazerBlitz · Knobbelboy (콜라브)",
+    verifier: "RicoLP (너프된 정식 버전)",
+    year: 2017,
+    peakRank: "톱 23",
+    category: "역사",
+    tag: "정의의 칼날",
+    motif: "spikes",
+    colors: ["#3a9bd8", "#0a1420"],
+    video: "pQc8KL-n20Y",
+    summary: "차가운 청록빛 '정의의 칼날' — 2017년 데몬리스트 상위권을 찍은 클래식 익스트림 데몬.",
+    history:
+      "Blade of Justice(줄여서 BoJ)는 Manix648이 호스트한 2.0/2.1 시대의 콜라브로, LazerBlitz·Knobbelboy 등이 " +
+      "참여했습니다. 인기 레벨 'A Bizarre Phantasm'의 정신적 후속작으로 기획되었으며, 파랑·검정·흰색을 기본으로 한 " +
+      "차갑고 날카로운 색감이 이름과 잘 어울립니다(LazerBlitz가 만든 일부 구간에는 보라색이 섞입니다).\n\n" +
+      "원래의 언너프드(너프 이전) 버전은 당시 최강이던 Bloodlust보다 더 어렵게 설계되었지만, Manix가 출시를 앞당기려 " +
+      "RicoLP에게 난이도 완화를 맡겼습니다. 베리파이는 Quantum·DuaL KiKi·Sunix·Combined 등 여러 명의 손을 거친 끝에 " +
+      "2017년 RicoLP가 정식으로 완료·공개했고, 그해 7월 데몬리스트 23위까지 올랐습니다.\n\n" +
+      "훗날 언너프드 버전을 기반으로 버프·리데코한 리메이크 'Edge of Destiny'가 따로 제작되었고(2023년 polterghast " +
+      "베리파이), 원본 언너프드 버전 자체는 2024년 MostDefinitelyAlbert가 베리파이했습니다.",
+    controversy:
+      "'누가 베리파이어냐'를 헷갈리기 쉬운 레벨입니다. 실제로 공개된 정식(너프) 버전은 RicoLP가, 별개의 언너프드 " +
+      "버전은 MostDefinitelyAlbert가 베리파이했으므로 구분이 필요합니다. 여러 명이 베리파이를 넘겨받은 이력도 있어 " +
+      "'최초 검증자' 서술에는 주의가 필요합니다. (커뮤니티 기록 기준)",
+  },
+  {
     id: "bloodlust",
     name: "Bloodlust",
     creator: "Manix648 외 (콜라브)",
@@ -499,6 +526,32 @@ const LEVELS = [
       "Sakupen Circles입니다.",
   },
   {
+    id: "congregation",
+    name: "Congregation",
+    creator: "Presta (솔로)",
+    verifier: "Floofle",
+    year: 2021,
+    peakRank: "톱 35",
+    category: "혁신",
+    tag: "분위기 · 음악 싱크",
+    motif: "pulse",
+    colors: ["#ff6a2a", "#0a1836"],
+    video: "KVlcdvGYcj0",
+    summary: "곡 진행에 따라 파랑에서 주황·빨강으로 물드는, 호불호가 크게 갈린 분위기·음악 싱크 레벨.",
+    history:
+      "Congregation은 Presta가 혼자 만든 2.1 익스트림 데몬으로, 2021년 4월 27일 Floofle이 베리파이했습니다(58% " +
+      "지점에서 운 좋게 살아남아 완주한 일화가 유명합니다). 음악 싱크와 독특한 분위기가 핵심으로, 초반은 블록이 거의 " +
+      "안 보일 만큼 명멸하는 파란색 톤으로 암기를 요구하고, 드롭(클라이맥스)에 가까워질수록 주황·빨강이 강해지며 " +
+      "후반 최고속 구간에서는 데코가 오렌지-레드와 퍼플-블루 사이를 번갈아 전환합니다.\n\n" +
+      "강렬한 분위기와 어려운 타이밍으로 화제가 되며 데몬리스트 최고 35위까지 올랐습니다. 2024년 1월 1일 Pandox가 " +
+      "120Hz 폰으로 최초 모바일 클리어에 성공했고, 2024년 만우절에는 RobTop이 하루 동안 이 레벨을 위클리 데몬으로 " +
+      "지정하는 장난을 치기도 했습니다. 2025년 1월 26일 Cobwebs가 배치되면서 약 3년 만에 레거시 리스트로 " +
+      "물러났습니다. 드롭 구간으로 갑자기 전환되는 순간은 'Congregation 점프스케어' 밈으로도 회자됩니다.",
+    controversy:
+      "데몬리스트에서 손꼽히는 논쟁적 레벨입니다. 분위기와 음악은 호평받았지만, 관습을 벗어난 게임플레이와 지나치게 긴 " +
+      "드롭 이전(pre-drop) 구간에 대한 비판이 컸습니다. (커뮤니티 의견)",
+  },
+  {
     id: "acheron",
     name: "Acheron",
     creator: "Ryamu",
@@ -687,6 +740,30 @@ const LEVELS = [
       "도전자들의 새로운 목표이자 기준점이 되었습니다.",
   },
   {
+    id: "solar-flare",
+    name: "Solar Flare",
+    creator: "Linear2 & rynoxious (콜라브)",
+    verifier: "swiborg",
+    year: 2023,
+    peakRank: "톱 21",
+    category: "장르 개척",
+    tag: "태양의 나인 서클즈",
+    motif: "circles",
+    colors: ["#ffb020", "#1c1e26"],
+    video: "eHQNgty8ypY",
+    summary: "노랑·주황 태양 불꽃으로 물든 나인 서클즈류 — 게임 내 손꼽히는 난도의 태양 테마 레벨.",
+    history:
+      "Solar Flare는 1.9 시절 미디엄 데몬 'Solar Circles'를 Linear2와 rynoxious가 초강화(super-buff)해 리메이크한 " +
+      "2.1 익스트림 데몬 나인 서클즈류 레벨입니다. 어두운 회색 배경 위로 노랑·주황 태양 불꽃이 지배적이고, 조명·위험 " +
+      "요소에는 파란색이 대비로 쓰입니다. 반쪽 웨이브 구간에는 'Janet'이라는 웃는 태양 얼굴이 등장했다가 플레이어가 " +
+      "죽으면 찡그린 얼굴로 바뀌는 연출이 특징입니다.\n\n" +
+      "2023년 4월 29일 swiborg이 최초로 정식 베리파이했고, 6월 10일 데몬리스트 21위에 배치되며 최상위권 익스트림 " +
+      "데몬으로 인정받았습니다. 이후 신규 레벨 유입으로 순위가 서서히 내려갔습니다. Sakupen Circles, The " +
+      "Hallucination, Subsuming Vortex에 이어 게임 내에서 손꼽히는 난도의 나인 서클즈 레벨로 평가됩니다.\n\n" +
+      "쇼케이스 영상 제목이 'by Linear & rynoxious'로만 적혀 제작자와 베리파이어(swiborg)를 혼동하기 쉬우니 " +
+      "주의하세요. 원작 'Solar Circles'와도 구분됩니다.",
+  },
+  {
     id: "boobawamba",
     name: "BOOBAWAMBA",
     creator: "akunakun · ygg24 · TheLetterV (콜라브)",
@@ -710,6 +787,36 @@ const LEVELS = [
       "가장 극적인 기록은 '빅터 가뭄'입니다. 베리파이 이후 약 424일이 지난 2025년 12월 10일에야 첫 빅터(agonom)가 " +
       "나와, 레이팅된 데몬이 최초 클리어자 없이 가장 오래 버틴 레벨 중 하나로 남았습니다. '같은 구간도 매번 다르게' " +
       "만든다는 점에서 LIMBO의 메모리 설계와도 통하는 혁신적 레벨입니다.",
+  },
+  {
+    id: "ashley-wave-trials",
+    name: "Ashley Wave Trials",
+    creator: "OddMod (솔로)",
+    verifier: "Zoink",
+    year: 2024,
+    peakRank: "톱 13",
+    category: "혁신",
+    tag: "핑크빛 웨이브의 반전",
+    motif: "wave",
+    colors: ["#ff5ea8", "#2a0a1e"],
+    video: "aTxt76U3e2Q",
+    summary: "톱급 난도의 순수 웨이브 레벨을, 어둡지 않은 밝은 핑크·애니풍 감성으로 풀어낸 반전의 레벨.",
+    history:
+      "Ashley Wave Trials는 OddMod가 혼자 만든 톱급 순수 웨이브 익스트림 데몬입니다. 'Ashley'는 제작자 OddMod의 " +
+      "본명에서 따온 것으로, 최상위 레벨 특유의 어둡고 무거운 분위기 대신 밝고 경쾌한 핑크·레드 색감을 택한 점이 " +
+      "돋보입니다. 화면 오른쪽에는 'Pink Girl'이라 불리는 애니풍 캐릭터(Ashley)가 앉아 플레이 내내 지켜봅니다. " +
+      "게임플레이는 반속으로 시작해 9% 부근에서 2배속으로 바뀌는 등 속도 변화가 있는 웨이브 위주입니다.\n\n" +
+      "원래는 사실상 불가능에 가까운 웨이브 챌린지로 구상되었다가, 약 12개 버전을 거치며 톱급 난이도로 다듬어졌습니다. " +
+      "Zoink이 2024년 11월 2일 베리파이했지만, 검증에 'Click Between Frames(CBF)' 모드를 사용한 탓에 오랫동안 " +
+      "미평가로 남았습니다. 이후 CBF가 게임에 공식 도입되면서 2026년 1월 29일 레이팅을 받았고, 3월 1일 데몬리스트 " +
+      "13위(Anathema 아래·Avernus 위)에 올랐습니다.\n\n" +
+      "커뮤니티에는 잔혹한 레벨로도 남았습니다. 베리파이 이후 572일 동안 아무도 클리어하지 못하다가 2026년 5월 28일 " +
+      "'nickname'이라는 플레이어가 처음으로 완주했습니다.",
+    controversy:
+      "가장 큰 쟁점은 'CBF 레이팅 논란'입니다. Zoink의 베리파이가 Click Between Frames 모드를 사용했다는 이유로 " +
+      "1년 넘게 미평가 상태로 남았고, CBF가 공식 도입된 뒤에야 레이팅되었습니다(레이팅 과정에서 버전이 잘못 되돌려지는 " +
+      "오류도 있어 바로잡혔습니다). 또한 이름이 흔히 'Ashely', 'Ashley's', 'Aerial', 'Ashen' 등으로 잘못 표기되는데, " +
+      "정확한 이름은 소유격·아포스트로피 없는 'Ashley Wave Trials'입니다. (커뮤니티 기록 기준)",
   },
   {
     id: "every-end",
@@ -862,6 +969,31 @@ const LEVELS = [
       "오른 레벨입니다. 인기 레벨 Escalator의 후속격 작품으로 제작되었습니다.\n\n" +
       "최신 세대의 톱 1 경쟁을 보여주는 레벨로, 베리파이 직후 곧바로 정상에 자리하며 큰 화제를 모았습니다.\n\n" +
       "데몬리스트 최상위권은 늘 빠르게 교체되는 만큼, 순위와 위상은 이후에도 계속 변동될 수 있습니다.",
+  },
+  {
+    id: "you-when-bee-crusher",
+    name: "you when bee crusher",
+    creator: "akunakun 외 (콜라브)",
+    verifier: "realfirexy & Draconyx1441 (2인 플레이)",
+    year: 2026,
+    peakRank: "역대 최강 2P 레벨",
+    category: ["혁신", "업커밍"],
+    tag: "2인 플레이 최강",
+    motif: "spikes",
+    colors: ["#f2d21e", "#0f1c1a"],
+    video: "LBJiK1Mr9Bs",
+    summary: "BOOBAWAMBA의 akunakun이 만든 2인 플레이(2P) 익스트림 데몬 — '역대 가장 어려운 2P 레벨'로 불린다.",
+    history:
+      "'you when bee crusher'는 BOOBAWAMBA로 유명한 akunakun이 여럿과 함께 만든 2인 플레이(2P) 익스트림 데몬입니다. " +
+      "이름은 소문자로 스타일링돼 있고 'bee'(벌) 철자가 특징입니다. 어두운 청록 배경 위로, 날카로운 이빨을 드러낸 노란 " +
+      "몬스터들이 화면을 가득 채우는 강렬한 비주얼이 인상적입니다. 음악은 Bossfight의 'the empire of toads'입니다.\n\n" +
+      "가장 큰 특징은 '2인 플레이'라는 점입니다. 두 플레이어가 동시에 조작해야 하며, 1P가 잠시 보스가 되어 서로의 " +
+      "패턴이 겹치지 않게 피해야 하는 보스전 구간과, 후반의 LIMBO를 연상시키는 메모리·미로 구간이 핵심입니다. " +
+      "제작자 Akunakun이 직접 보스로 등장해 두 플레이어 사이를 갈라놓으려 한다는 메타적 서사가 깔려 있습니다.\n\n" +
+      "2026년 초 공개된 뒤 약 하루 만에 realfirexy(FireXY)와 Draconyx1441이 실제 2인 플레이(1P Draconyx · 2P " +
+      "FireXY)로 베리파이하며 곧바로 '게임 내 가장 어려운 2P 레벨'로 화제가 되었습니다. 2인 전용 레벨이라 일반 솔로 " +
+      "데몬리스트에는 오르지 않지만, 2인 난이도 척도에서 이전 기준이던 Codependence·Killbot을 뛰어넘는다는 평을 " +
+      "받습니다. (공개는 됐으나 아직 정식 레이팅 전 단계로, 이 페이지에서는 '업커밍'으로 함께 분류합니다.)",
   },
   {
     id: "orochi-old",
