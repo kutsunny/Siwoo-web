@@ -508,8 +508,8 @@ const LEVELS = [
     category: "1위 경쟁",
     tag: "1위 등극",
     motif: "spikes",
-    colors: ["#9b5cff", "#1b0a3a"],
-    summary: "2022년 Zoink의 베리파이로 정상에 오른 보라빛 극한 레벨.",
+    colors: ["#cf3a55", "#180510"],
+    summary: "2022년 Zoink의 베리파이로 정상에 오른 붉은 극한 레벨.",
     history:
       "Acheron은 Ryamu가 제작하고 2022년 Zoink가 베리파이하며 데몬리스트 1위에 오른 레벨입니다. 그리스 신화 " +
       "속 '고통의 강' 이름을 딴 만큼, 처음부터 끝까지 고밀도의 정밀 컨트롤 구간으로 가득 차 있습니다.\n\n" +
@@ -561,7 +561,7 @@ const LEVELS = [
     category: ["역사", "불가능 레벨"],
     tag: "불가능 → 톱 3",
     motif: "sound",
-    colors: ["#33ff8a", "#062b18"],
+    colors: ["#c9ccd6", "#0e0e12"],
     video: "GR4OMkS3SN8",
     summary: "한때 '인간에게 불가능'으로 불리던 전설이, 너프된 레이팅 버전으로 마침내 데몬리스트 톱 3에 오른 레벨.",
     history:
@@ -746,7 +746,7 @@ const LEVELS = [
     category: "1위 경쟁",
     tag: "전설의 후속작",
     motif: "stars",
-    colors: ["#c7d0e8", "#161a26"],
+    colors: ["#f13a92", "#160a20"],
     summary: "명작 Thinking Space의 정식 후속작으로, 2025년 데몬리스트 1위에 오른 우주 테마 콜라브.",
     history:
       "Thinking Space II는 명작 'Thinking Space'의 정식 후속작에 해당하는 대형 콜라브로, DrCuber와 CairoX가 호스트하고 " +
