@@ -395,7 +395,7 @@ const LEVELS = [
     verifier: "neigefeu",
     year: 2020,
     peakRank: "모던 스타일 시조",
-    category: "장르 개척",
+    category: "혁신",
     tag: "모던 미니멀리즘의 시작",
     motif: "spikes",
     colors: ["#9bff3d", "#3a0d4a"],
