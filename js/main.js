@@ -1170,7 +1170,7 @@
     const historyHtml = level.history
       .split("\n\n")
       .map(function (para) {
-        return "<p>" + esc(para) + "</p>";
+        return "<p>" + esc(para).replace(/\n/g, "<br>") + "</p>";
       })
       .join("");
 
