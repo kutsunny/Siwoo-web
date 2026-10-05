@@ -330,6 +330,138 @@
 
       return s;
     },
+    // 그리프: 핏빛 지옥 벽(역삼각 타일) + 펜타그램 + 늘어진 흰 사슬 +
+    //         거대 바포메트 염소 두상(노랗게 빛나는 눈) + 갈라진 GRIEF 문구
+    grief: function (c1, c2, rng) {
+      let s = "";
+
+      // 오각 별(펜타그램) — 원 안에 한붓그리기
+      function pentagram(cx, cy, r, op) {
+        const pts = [];
+        for (let i = 0; i < 5; i++) {
+          const a = ((-90 + i * 72) * Math.PI) / 180;
+          pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]);
+        }
+        const order = [0, 2, 4, 1, 3];
+        let d = "M";
+        for (let i = 0; i < 5; i++) {
+          d += " " + pts[order[i]][0].toFixed(1) + " " + pts[order[i]][1].toFixed(1);
+          if (i < 4) d += " L";
+        }
+        return '<g opacity="' + op + '" fill="none" stroke="' + c1 + '" stroke-width="1.6">' +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 1.18).toFixed(1) + '"/>' +
+          '<path d="' + d + ' Z"/></g>';
+      }
+
+      // 비스듬히 늘어진 사슬 (가로/세로 링 교차)
+      function chain(x0, y0, x1, y1) {
+        const n = Math.max(2, Math.round(Math.sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0)) / 9));
+        let g = '<g stroke="#e4e6ec" stroke-width="2" fill="none" opacity="0.7">';
+        for (let i = 0; i < n; i++) {
+          const t = i / n;
+          const cx = (x0 + (x1 - x0) * t).toFixed(1);
+          const cy = (y0 + (y1 - y0) * t).toFixed(1);
+          if (i % 2 === 0) g += '<ellipse cx="' + cx + '" cy="' + cy + '" rx="3" ry="5.5"/>';
+          else g += '<ellipse cx="' + cx + '" cy="' + cy + '" rx="5.5" ry="3"/>';
+        }
+        return g + "</g>";
+      }
+
+      // 바포메트(염소) 두상 — 말려 올라간 뿔 + 각진 결정 얼굴 + 발광하는 눈
+      function baphomet(cx, cy, sc) {
+        let g = '<g transform="translate(' + cx + " " + cy + ") scale(" + sc + ')">';
+        // 머리 뒤 붉은 발광
+        g += '<circle cx="0" cy="4" r="62" fill="' + c1 + '" opacity="0.2"/>';
+        // 뿔 (좌/우 대칭 · 돌빛 회색 + 결 무늬)
+        const hornL = "M -18 -16 C -50 -32 -82 -22 -76 8 C -73 26 -55 32 -46 20 " +
+          "C -57 23 -64 14 -62 3 C -58 -14 -34 -16 -12 -2 Z";
+        const hornR = "M 18 -16 C 50 -32 82 -22 76 8 C 73 26 55 32 46 20 " +
+          "C 57 23 64 14 62 3 C 58 -14 34 -16 12 -2 Z";
+        g += '<path d="' + hornL + '" fill="#b9bcc6" stroke="#f2f3f7" stroke-width="1.4"/>';
+        g += '<path d="' + hornR + '" fill="#b9bcc6" stroke="#f2f3f7" stroke-width="1.4"/>';
+        // 뿔 결 (가로줄)
+        g += '<g stroke="#6f7380" stroke-width="1.1" opacity="0.65" fill="none">';
+        for (let i = 0; i < 5; i++) {
+          const t = -26 - i * 11;
+          g += '<path d="M ' + t + ' ' + (-16 - i * 1.5) + " q -4 9 0 17" + '"/>';
+          g += '<path d="M ' + -t + ' ' + (-16 - i * 1.5) + " q 4 9 0 17" + '"/>';
+        }
+        g += "</g>";
+        // 각진 결정형 얼굴 (아래로 뾰족)
+        g += '<path d="M 0 -26 L 26 -8 L 19 14 L 7 40 L 0 60 L -7 40 L -19 14 L -26 -8 Z" ' +
+          'fill="#d6d9e2" stroke="#fdfdff" stroke-width="1.6"/>';
+        // 얼굴 면 분할 (크리스탈 결)
+        g += '<g stroke="#8a8fa0" stroke-width="1.1" opacity="0.7" fill="none">';
+        g += '<path d="M 0 -26 L 0 60"/><path d="M -26 -8 L 0 10 L 26 -8"/>';
+        g += "</g>";
+        // 붉게 물든 안쪽 그림자
+        g += '<path d="M 0 2 L 14 10 L 7 38 L 0 52 L -7 38 L -14 10 Z" fill="' + c1 + '" opacity="0.5"/>';
+        // 발광하는 노란 눈
+        g += '<circle cx="-13" cy="-3" r="9" fill="#ffe14a" opacity="0.3"/>';
+        g += '<circle cx="13" cy="-3" r="9" fill="#ffe14a" opacity="0.3"/>';
+        g += '<polygon points="-24,-9 -7,-2 -10,5 -22,0" fill="#ffe14a"/>';
+        g += '<polygon points="24,-9 7,-2 10,5 22,0" fill="#ffe14a"/>';
+        return g + "</g>";
+      }
+
+      // 바닥의 작은 인간 실루엣
+      function figure(x, y, h) {
+        return '<g fill="' + c1 + '" opacity="0.45">' +
+          '<circle cx="' + x + '" cy="' + (y - h).toFixed(1) + '" r="' + (h * 0.2).toFixed(1) + '"/>' +
+          '<rect x="' + (x - h * 0.17).toFixed(1) + '" y="' + (y - h * 0.8).toFixed(1) +
+          '" width="' + (h * 0.34).toFixed(1) + '" height="' + (h * 0.8).toFixed(1) +
+          '" rx="' + (h * 0.12).toFixed(1) + '"/></g>';
+      }
+
+      // 1) 핏빛 벽 — 역삼각 타일 + 꺾쇠 블록이 빽빽하게
+      for (let row = 0; row < 5; row++) {
+        for (let col = 0; col < 11; col++) {
+          const x = col * 38 + (row % 2 ? 19 : 0);
+          const y = row * 36 + 8;
+          const w = 12 + rng() * 5;
+          const h = 15 + rng() * 8;
+          s += '<polygon points="' + (x - w).toFixed(1) + "," + y + " " + (x + w).toFixed(1) + "," + y +
+            " " + x + "," + (y + h).toFixed(1) + '" fill="' + c1 + '" opacity="' + (0.1 + rng() * 0.2).toFixed(2) + '"/>';
+          if (rng() > 0.62) {
+            s += '<path d="M ' + (x - 14) + " " + (y + 20) + " h 15 v 11" + '" fill="none" stroke="' + c1 +
+              '" stroke-width="2" opacity="' + (0.14 + rng() * 0.16).toFixed(2) + '"/>';
+          }
+        }
+      }
+
+      // 2) 좌우 펜타그램 (제단 문양)
+      s += pentagram(32, 96, 26, 0.35) + pentagram(368, 96, 26, 0.35);
+      s += pentagram(118, 150, 14, 0.22) + pentagram(286, 150, 14, 0.22);
+
+      // 3) 중앙 지옥 글로우
+      s += '<circle cx="200" cy="70" r="118" fill="' + c1 + '" opacity="0.14"/>';
+
+      // 4) 위에서 늘어진 흰 사슬 — 두상 쪽으로 비스듬히
+      s += chain(146, 0, 184, 50) + chain(254, 0, 216, 50) + chain(96, 0, 108, 34) + chain(304, 0, 292, 34);
+
+      // 5) 바포메트 두상
+      s += baphomet(200, 72, 0.92);
+
+      // 6) 바닥 — 어두운 띠 + 작은 실루엣들
+      s += '<rect x="0" y="152" width="400" height="28" fill="' + c2 + '" opacity="0.55"/>';
+      s += figure(46, 152, 20) + figure(352, 152, 20) + figure(96, 152, 13) + figure(306, 152, 13);
+
+      // 7) GRIEF 문구 (갈라진 핏빛 — 어두운 바탕 + 붉은 전경)
+      s += '<text x="200" y="146" text-anchor="middle" textLength="300" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="52" ' +
+        'fill="' + c1 + '" opacity="0.3">GRIEF</text>';
+      s += '<text x="200" y="144" text-anchor="middle" textLength="292" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="48" ' +
+        'fill="' + c1 + '" stroke="#170003" stroke-width="2" paint-order="stroke">GRIEF</text>';
+
+      // 8) 떠다니는 불티
+      for (let i = 0; i < 12; i++) {
+        s += '<circle cx="' + (rng() * 400).toFixed(1) + '" cy="' + (20 + rng() * 120).toFixed(1) +
+          '" r="' + (0.6 + rng() * 1.5).toFixed(1) + '" fill="#ffd86a" opacity="' + (0.25 + rng() * 0.45).toFixed(2) + '"/>';
+      }
+
+      return s;
+    },
     // 웨이브: 날카로운 지그재그 라인
     wave: function (c1, c2, rng) {
       let s = artGround(c1, c2);
