@@ -462,6 +462,134 @@
 
       return s;
     },
+    // 익사스퍼레이션: 흑백 낙서 콜라주 + 물음표 오브 +
+    //                 비스듬히 튀어나온 입체 그래피티 "EXASPERATION" 문구
+    exasperation: function (c1, c2, rng) {
+      let s = "";
+
+      // 1) 배경 낙서 — 흰 지그재그 선이 겹겹이 (콜라주 질감)
+      for (let i = 0; i < 26; i++) {
+        let x = rng() * 400;
+        let y = rng() * 180;
+        let d = "M " + x.toFixed(1) + " " + y.toFixed(1);
+        for (let k = 0; k < 5; k++) {
+          x += rng() * 40 - 20;
+          y += rng() * 30 - 15;
+          d += " L " + x.toFixed(1) + " " + y.toFixed(1);
+        }
+        s += '<path d="' + d + '" fill="none" stroke="' + c1 + '" stroke-width="' + (0.6 + rng() * 1.2).toFixed(1) +
+          '" opacity="' + (0.12 + rng() * 0.2).toFixed(2) + '"/>';
+      }
+      // 각진 블록 · 창문 같은 사각 조각
+      for (let i = 0; i < 14; i++) {
+        const w = 10 + rng() * 34;
+        const h = 8 + rng() * 26;
+        s += '<rect x="' + (rng() * 380).toFixed(1) + '" y="' + (rng() * 160).toFixed(1) + '" width="' + w.toFixed(1) +
+          '" height="' + h.toFixed(1) + '" fill="none" stroke="' + c1 + '" stroke-width="1" opacity="' +
+          (0.1 + rng() * 0.18).toFixed(2) + '"/>';
+      }
+
+      // 2) 모든 오브·포탈을 가린 물음표
+      for (let i = 0; i < 9; i++) {
+        const x = 20 + rng() * 360;
+        const y = 22 + rng() * 140;
+        const r = 7 + rng() * 6;
+        s += '<g opacity="' + (0.35 + rng() * 0.3).toFixed(2) + '">' +
+          '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r.toFixed(1) + '" fill="' + c2 +
+          '" stroke="' + c1 + '" stroke-width="1.4"/>' +
+          '<text x="' + x.toFixed(1) + '" y="' + (y + r * 0.45).toFixed(1) + '" text-anchor="middle" ' +
+          'font-family="Arial, sans-serif" font-weight="700" font-size="' + (r * 1.4).toFixed(1) + '" fill="' + c1 + '">?</text></g>';
+      }
+
+      // 3) 입체 그래피티 문구 — 뒤로 밀려나는 돌출면 + 흰 외곽선 전경
+      s += '<g transform="rotate(-11 200 96)">';
+      for (let k = 7; k >= 1; k--) {
+        s += '<text x="' + (200 + k * 2.2).toFixed(1) + '" y="' + (108 - k * 2.6).toFixed(1) + '" text-anchor="middle" ' +
+          'textLength="330" lengthAdjust="spacingAndGlyphs" font-family="Impact, &apos;Arial Black&apos;, sans-serif" ' +
+          'font-weight="900" font-size="46" fill="' + c2 + '" stroke="' + c1 + '" stroke-width="0.8" opacity="' +
+          (0.35 + (7 - k) * 0.06).toFixed(2) + '">EXASPERATION</text>';
+      }
+      s += '<text x="200" y="108" text-anchor="middle" textLength="330" lengthAdjust="spacingAndGlyphs" ' +
+        'font-family="Impact, &apos;Arial Black&apos;, sans-serif" font-weight="900" font-size="46" ' +
+        'fill="' + c2 + '" stroke="' + c1 + '" stroke-width="2.2" paint-order="stroke">EXASPERATION</text>';
+      s += "</g>";
+
+      // 4) 글자 주변 흰 발광
+      s += '<ellipse cx="200" cy="96" rx="190" ry="44" fill="' + c1 + '" opacity="0.06"/>';
+
+      return s;
+    },
+    // 휴먼 리밋: 붉은 번개 균열 + 깨진 유리 파편 +
+    //            빛나는 눈으로 비명 지르는 거대한 얼굴 + 사선 빔
+    humanlimit: function (c1, c2, rng) {
+      let s = "";
+
+      // 1) 붉은 발광 바탕
+      s += '<circle cx="200" cy="92" r="150" fill="' + c1 + '" opacity="0.22"/>';
+
+      // 2) 깨진 유리 파편 (날카로운 삼각형)
+      for (let i = 0; i < 22; i++) {
+        const x = rng() * 400;
+        const y = rng() * 180;
+        const a = rng() * Math.PI * 2;
+        const l = 14 + rng() * 34;
+        const w = 4 + rng() * 8;
+        const x1 = x + Math.cos(a) * l;
+        const y1 = y + Math.sin(a) * l;
+        const x2 = x + Math.cos(a + 1.57) * w;
+        const y2 = y + Math.sin(a + 1.57) * w;
+        s += '<polygon points="' + x.toFixed(1) + "," + y.toFixed(1) + " " + x1.toFixed(1) + "," + y1.toFixed(1) + " " +
+          x2.toFixed(1) + "," + y2.toFixed(1) + '" fill="' + c1 + '" opacity="' + (0.18 + rng() * 0.3).toFixed(2) + '"/>';
+      }
+
+      // 3) 번개 균열 (지그재그)
+      for (let i = 0; i < 14; i++) {
+        let x = rng() * 400;
+        let y = rng() * 180;
+        let d = "M " + x.toFixed(1) + " " + y.toFixed(1);
+        for (let k = 0; k < 4; k++) {
+          x += rng() * 24 - 12;
+          y += rng() * 24 - 12;
+          d += " L " + x.toFixed(1) + " " + y.toFixed(1);
+        }
+        s += '<path d="' + d + '" fill="none" stroke="#ff8a94" stroke-width="1.2" opacity="' +
+          (0.35 + rng() * 0.4).toFixed(2) + '"/>';
+      }
+
+      // 4) 비명 지르는 얼굴
+      s += '<g transform="translate(200 84)">';
+      s += '<path d="M -58 -52 C -40 -78 40 -78 58 -52 C 72 -20 66 22 46 52 C 30 76 -30 76 -46 52 ' +
+        'C -66 22 -72 -20 -58 -52 Z" fill="#f2b7bd" opacity="0.55"/>';
+      // 볼·광대 음영
+      s += '<path d="M -50 -6 C -40 10 -40 30 -28 44 L -40 46 C -54 26 -58 8 -50 -6 Z" fill="' + c2 + '" opacity="0.35"/>';
+      s += '<path d="M 50 -6 C 40 10 40 30 28 44 L 40 46 C 54 26 58 8 50 -6 Z" fill="' + c2 + '" opacity="0.35"/>';
+      // 눈두덩 그림자 + 빛나는 눈
+      s += '<ellipse cx="-24" cy="-22" rx="20" ry="15" fill="' + c2 + '" opacity="0.55"/>';
+      s += '<ellipse cx="24" cy="-22" rx="20" ry="15" fill="' + c2 + '" opacity="0.55"/>';
+      s += '<circle cx="-24" cy="-22" r="16" fill="' + c1 + '" opacity="0.6"/>';
+      s += '<circle cx="24" cy="-22" r="16" fill="' + c1 + '" opacity="0.6"/>';
+      s += '<circle cx="-24" cy="-22" r="9" fill="#fff4f4"/>';
+      s += '<circle cx="24" cy="-22" r="9" fill="#fff4f4"/>';
+      // 코
+      s += '<polygon points="0,-8 -7,10 7,10" fill="' + c2 + '" opacity="0.5"/>';
+      // 크게 벌린 입 + 이빨 테두리
+      s += '<ellipse cx="0" cy="34" rx="30" ry="20" fill="' + c2 + '"/>';
+      s += '<g fill="#f6dadd" opacity="0.85">';
+      for (let i = 0; i < 7; i++) {
+        const tx = -24 + i * 8;
+        s += '<polygon points="' + (tx - 3.5) + ",17 " + (tx + 3.5) + ",17 " + tx + ',25"/>';
+        s += '<polygon points="' + (tx - 3.5) + ",51 " + (tx + 3.5) + ",51 " + tx + ',44"/>';
+      }
+      s += "</g></g>";
+
+      // 5) 사선으로 가로지르는 흰 빔
+      s += '<polygon points="70,0 82,0 18,180 6,180" fill="#ffffff" opacity="0.28"/>';
+
+      // 6) 번쩍임 (가장자리 붉은 플래시)
+      s += '<rect width="400" height="180" fill="none" stroke="' + c1 + '" stroke-width="10" opacity="0.35"/>';
+
+      return s;
+    },
     // 웨이브: 날카로운 지그재그 라인
     wave: function (c1, c2, rng) {
       let s = artGround(c1, c2);
